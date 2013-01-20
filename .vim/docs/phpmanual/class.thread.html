@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Thread クラス</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="pthreads.resources.html">リソース型</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="thread.getcreatorid.html">Thread::getCreatorId</a></div>
+ <div class="up"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="class.thread" class="reference">
+
+ <h1 class="title">Thread クラス</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(バージョン情報なし。おそらく SVN 版にしか存在しないでしょう)</p>
+
+
+  <div class="section" id="thread.intro">
+   <h2 class="title">導入</h2>
+   <p class="para">
+    スレッドを実装するには、このクラスを継承して run メソッドを実装しなければいけません。
+    このオブジェクトの start メソッドが呼ばれると、run メソッドのコードが個別のスレッドで実行されます。
+   </p>
+  </div>
+
+
+  <div class="section" id="thread.synopsis">
+   <h2 class="title">クラス概要</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">Thread</strong>
+     </span>
+     {</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* メソッド */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">long</span> <span class="methodname"><a href="thread.getcreatorid.html" class="methodname">getCreatorId</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">long</span> <span class="methodname"><a href="thread.getthreadid.html" class="methodname">getThreadId</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.isjoined.html" class="methodname">isJoined</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.isrunning.html" class="methodname">isRunning</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.isstarted.html" class="methodname">isStarted</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.iswaiting.html" class="methodname">isWaiting</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.join.html" class="methodname">join</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.lock.html" class="methodname">lock</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.notify.html" class="methodname">notify</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="thread.run.html" class="methodname">run</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.start.html" class="methodname">start</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">mixed</span> <span class="methodname"><a href="thread.synchronized.html" class="methodname">synchronized</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.closure.html" class="type Closure">Closure</a></span> <code class="parameter">$block</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.unlock.html" class="methodname">unlock</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="thread.wait.html" class="methodname">wait</a></span>
+    ([ <span class="methodparam"><span class="type"><span class="type long">long</span></span> <code class="parameter">$timeout</code></span>
+  ] )</div>
+
+   }</div>
+
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>目次</h2><ul class="chunklist chunklist_reference"><li><a href="thread.getcreatorid.html">Thread::getCreatorId</a> — 識別</li><li><a href="thread.getthreadid.html">Thread::getThreadId</a> — 識別</li><li><a href="thread.isjoined.html">Thread::isJoined</a> — 状態を検出する</li><li><a href="thread.isrunning.html">Thread::isRunning</a> — 状態を検出する</li><li><a href="thread.isstarted.html">Thread::isStarted</a> — 状態を検出する</li><li><a href="thread.iswaiting.html">Thread::isWaiting</a> — 状態を検出する</li><li><a href="thread.join.html">Thread::join</a> — 同期処理</li><li><a href="thread.lock.html">Thread::lock</a> — 同期処理</li><li><a href="thread.notify.html">Thread::notify</a> — 同期処理</li><li><a href="thread.run.html">Thread::run</a> — 実行する</li><li><a href="thread.start.html">Thread::start</a> — 実行する</li><li><a href="thread.synchronized.html">Thread::synchronized</a> — 同期処理</li><li><a href="thread.unlock.html">Thread::unlock</a> — 同期処理</li><li><a href="thread.wait.html">Thread::wait</a> — 同期処理</li></ul>
+</div>
+<hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="pthreads.resources.html">リソース型</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="thread.getcreatorid.html">Thread::getCreatorId</a></div>
+ <div class="up"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

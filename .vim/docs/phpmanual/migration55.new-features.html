@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>新機能</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="migration55.incompatible.html">下位互換性のない変更点</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="migration55.deprecated.html">PHP 5.5.x で推奨されなくなる機能</a></div>
+ <div class="up"><a href="migration55.html">PHP 5.4.x から PHP 5.5.x への移行</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="migration55.new-features" class="sect1">
+  <h2 class="title">新機能</h2>
+
+  <div class="sect2" id="migration55.new-features.generators">
+   <h3 class="title"><a href="language.generators.html" class="link">ジェネレータ</a>の追加</h3>
+
+   <p class="para">
+    <a href="language.generators.html" class="link">ジェネレータ</a>が追加されました。
+    <strong class="command">yield</strong> キーワードで利用します。
+    ジェネレータを使えば、シンプルなイテレータを簡単に実装できます。
+    <a href="class.iterator.html" class="classname">Iterator</a> インターフェイスを実装したクラスを用意する
+    オーバーヘッドや複雑さを心配する必要はありません。
+   </p>
+
+   <p class="para">
+     <span class="function"><a href="function.range.html" class="function">range()</a></span> 関数をジェネレータで実装しなおす例を示します
+    (<em>step</em> には正の値しか使えません)。
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">xrange</span><span style="color: #007700">(</span><span style="color: #0000BB">$start</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$limit</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$step&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$start</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;=&nbsp;</span><span style="color: #0000BB">$limit</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$step</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">yield&nbsp;$i</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">'Single&nbsp;digit&nbsp;odd&nbsp;numbers:&nbsp;'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;配列を作ったり配列を返したりしていないことに注目しましょう。<br />&nbsp;*&nbsp;そのぶんメモリの節約になります。&nbsp;*/&nbsp;<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">xrange</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">9</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$number</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$number</span><span style="color: #DD0000">&nbsp;"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">上の例の出力は以下となります。</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Single digit odd numbers: 1 3 5 7 9 
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.finally">
+   <h3 class="title"><a href="language.exceptions.html" class="link"><em>finally</em></a> キーワードの追加</h3>
+
+   <p class="para">
+    <em>try</em>-<em>catch</em> ブロックで
+    <a href="language.exceptions.html" class="link"><em>finally</em></a>
+    が使えるようになりました。例外が発生したかどうかに関わらず
+    必ず実行しないといけないコードをここに書きます。
+   </p>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.foreach-list">
+   <h3 class="title"><a href="control-structures.foreach.html" class="link"><em>foreach</em></a> が  <span class="function"><a href="function.list.html" class="function">list()</a></span> に対応</h3>
+
+   <p class="para">
+    <a href="control-structures.foreach.html" class="link">foreach</a>
+    で  <span class="function"><a href="function.list.html" class="function">list()</a></span> を使って、
+    ネストした配列を個別の変数に展開できるようになりました。たとえば次のようになります。
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$array&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">],<br />];<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">as&nbsp;list(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A:&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #DD0000">;&nbsp;B:&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">上の例の出力は以下となります。</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+A: 1; B: 2
+A: 3; B: 4
+</pre></div>
+    </div>
+   </div>
+
+   <p class="para">
+    詳細な情報は
+    <a href="control-structures.foreach.html#control-structures.foreach.list" class="link">foreach</a>
+    のマニュアルを参照ください。
+   </p>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.empty">
+   <h3 class="title"> <span class="function"><a href="function.empty.html" class="function">empty()</a></span> が任意の式に対応</h3>
+
+   <p class="para">
+    変数だけでなく、任意の式を
+     <span class="function"><a href="function.empty.html" class="function">empty()</a></span> に渡せるようになりました。たとえば次のようになります。
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">always_false</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(empty(</span><span style="color: #0000BB">always_false</span><span style="color: #007700">()))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;will&nbsp;be&nbsp;printed.'</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(empty(</span><span style="color: #0000BB">true</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;will&nbsp;not&nbsp;be&nbsp;printed.'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">上の例の出力は以下となります。</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+This will be printed.
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.const-dereferencing">
+   <h3 class="title"><span class="type"><a href="language.types.array.html" class="type array">array</a></span> リテラルと <span class="type"><a href="language.types.string.html" class="type string">string</a></span> リテラルのデリファレンス</h3>
+
+   <p class="para">
+    <span class="type"><a href="language.types.array.html" class="type Array">Array</a></span> と <span class="type"><a href="language.types.string.html" class="type string">string</a></span> をデリファレンスして、
+    個々の要素や文字に直接アクセスできるようになりました。
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Array&nbsp;dereferencing:&nbsp;'</span><span style="color: #007700">;<br />echo&nbsp;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br />echo&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">'String&nbsp;dereferencing:&nbsp;'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br />echo&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <p class="para">上の例の出力は以下となります。</p>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Array dereferencing: 1
+String dereferencing: P
+</pre></div>
+     </div>
+    </div>
+   </p>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.password">
+   <h3 class="title">新しいパスワードハッシュ API</h3>
+
+   <p class="para">
+    <a href="book.password.html" class="link">新しいパスワードハッシュ API</a>
+    が用意され、より簡単にパスワードをハッシュしたり管理したりできるようになりました。
+    PHP の  <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span> が使っているのと同じライブラリを利用します。
+    詳細は  <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> のドキュメントを参照ください。
+   </p>
+  </div>
+
+  <div class="sect2" id="migration55.new-features.windows-apache">
+   <h3 class="title">Apache 2.4 ハンドラが Windows に対応</h3>
+
+   <p class="para">
+    Apache 2.4 ハンドラ SAPI が Windows に対応するようになりました。
+   </p>
+  </div>
+ </div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="migration55.incompatible.html">下位互換性のない変更点</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="migration55.deprecated.html">PHP 5.5.x で推奨されなくなる機能</a></div>
+ <div class="up"><a href="migration55.html">PHP 5.4.x から PHP 5.5.x への移行</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>導入</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="pthreads.setup.html">インストール/設定</a></div>
+ <div class="up"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="intro.pthreads" class="preface">
+  <h1 class="title">導入</h1>
+  <p class="para">
+ pthreads はオブジェクト指向の API で、ユーザーランドでのマルチスレッド処理を PHP で行うためのものです。
+ ウェブやコンソールをターゲットにしたマルチスレッドアプリケーションを作るのに必要な、あらゆるツールが含まれています。
+ PHP アプリケーションで、Thread や Worker そして Stackable を作ったり読み書きしたり実行したりできるようになります。
+  </p>
+  <p class="para">
+ Thread オブジェクト:
+ ユーザーがスレッドを実装するには、pthreads が用意した Thread の宣言を継承します。
+ Thread を参照すれば、あらゆるコンテキストから任意のメンバーの読み書きができ、
+ すべての public メソッドおよび protected メソッドを任意のコンテキストで実行できます。
+ run メソッドは、この実装オブジェクトの start メソッドを呼んだコンテキスト
+ (Thread あるいは Process) とは別のスレッドで実行されます。
+ スレッドを作ったコンテキストだけが、スレッドの start や join を行えます。
+  </p>
+  <p class="para">
+ Worker オブジェクト:
+ ワーカースレッドは永続的な状態を保持し、start を呼んだ時点からオブジェクトがスコープ外に消えるまで
+ (あるいは明示的に shutdown するまで) 使えます。
+ このオブジェクトを参照する任意のコンテキストから、
+ Stackable 型のオブジェクトを Worker に渡せます。これを、Worker が別スレッドで実行します。
+ Worker の run メソッドは、あらゆるオブジェクトがスタックに積まれる前に実行されます。
+ そのため、Stackable で必要となるリソースの初期化に使えます。
+  </p>
+  <p class="para">
+ Stackable オブジェクト:
+ A Stackable Object can read/write and execute the Worker ( $this-&gt;worker ) during the execution of it&#039;s run method. 
+ Additionally, any context with a reference to the Stackable can read, write and execute it&#039;s methods before during and after execution.
+  </p>
+  <p class="para">
+ 同期処理:
+ All of the objects that pthreads creates have built in synchronization in the form of ::wait and ::notify. 
+ Calling ::wait on an object will cause the context to wait for another context to call ::notify on the same object. 
+ This allows for powerful synchronization between Threaded Objects in PHP.
+  </p>
+  <p class="para">
+ Wait, Threaded Objects ?
+ A Stackable, Thread or Worker can be thought of, and should be used as a Threaded stdClass: A Thread, Worker and Stackable all behave in the same way in any context with a reference.
+ Any objects that are intended for use in the multi-threaded parts of your application should extend the Stackable, Thread or Worker declaration. 
+ Which means they must implement run but may not ever be executed; it will often be the case that Objects being used in a multi-threaded environment are intended for execution. 
+ Doing so means any context ( that&#039;s Thread/Worker/Stackable/Process ) with a reference can read, write and execute the members of the Threaded Object before, during, and after execution.
+  </p>
+  <p class="para">
+ Method Modifiers:
+ The protected methods of Threaded Objects are protected by pthreads, such that only one context may call that method at a time. 
+ The private methods of Threaded Objects can only be called from within the Threaded Object during execution.
+  </p>
+  <p class="para">
+ Data Storage:
+ As a rule of thumb, any data type that can be serialized can be used as a member of a Threaded object, it can be read and written from any context with a reference to the Threaded Object. 
+ Not every type of data is stored serially, basic types are stored in their true form. 
+ Complex types, Arrays, and Objects that are not Threaded are stored serially; they can be read and written to the Threaded Object from any context with a reference.
+ With the exception of Threaded Objects any reference used to set a member of a Threaded Object is separated from the reference in the Threaded Object; 
+ the same data can be read directly from the Threaded Object at any time by any context with a reference to the Threaded Object.
+  </p>
+  <blockquote class="note"><p><strong class="note">注意</strong>: 
+   <p class="para">
+ Resources:
+ The extensions and functionality that define resources in PHP are completely unprepared for this kind of environment; pthreads makes provisions for Resources to be shared among contexts, however, for most types of resource it should be considered unsafe. Extreme caution and care should be used when sharing resources among contexts.
+   </p>
+  </p></blockquote>
+  <div class="caution"><strong class="caution">警告</strong>
+   <p class="para">
+ pthreads was, and is, an experiment with pretty good results. Any of its limitations or features may change at any time; that is the nature of experimentation. 
+ It&#039;s limitations - often imposed by the implementation - exist for good reason; the aim of pthreads is to provide a useable solution to multi-tasking in PHP at any level. 
+ In the environment which pthreads executes, some restrictions and limitations are necessary in order to provide a stable environment.
+   </p>
+  </div>
+ </div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="pthreads.setup.html">インストール/設定</a></div>
+ <div class="up"><a href="book.pthreads.html">pthreads</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
