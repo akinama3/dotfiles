@@ -4,10 +4,10 @@
 autocmd!
 
 " -----------------------------------------------------------------------------
-"  colorscheme
+"  Syntax
 " -----------------------------------------------------------------------------
 syntax on
-colorscheme gentooish
+colorscheme molokai
 
 " -----------------------------------------------------------------------------
 "  基本設定
@@ -24,10 +24,11 @@ set noinsertmode
 " 行番号の表示
 set number
 
-" エンコーディング設定(utf-8)
+" エンコーディング設定
 set encoding=utf-8
+set termencoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
+set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 
 " 基本のインデント設定(各拡張子毎の設定は別途)
 set expandtab
@@ -54,6 +55,9 @@ set incsearch
 " 検索ワードをハイライトする
 set hlsearch
 
+" ケースセンシティブでない検索にする
+set ignorecase
+
 " -----------------------------------------------------------------------------
 "  vundle
 " -----------------------------------------------------------------------------
@@ -63,34 +67,41 @@ filetype off
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 
+" バッファを開いた時に、カレントディレクトリを自動で移動
+autocmd BufEnter * execute ":lcd " . expand("%:p:h")
+
 " -----------------------------------------------------------------------------
 " vundle plugins
 " -----------------------------------------------------------------------------
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimfiler'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'fholgado/minibufexpl.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Shougo/neocomplcache'
-Bundle 'vim-scripts/phpfolding.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'tobym/vim-play'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/dbext.vim'
+Bundle 'vim-scripts/gtags.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/phpfolding.vim'
+Bundle 'vim-scripts/yanktmp.vim'
+Bundle 'vim-scripts/molokai'
+Bundle 'surround.vim'
 
 " ファイルタイプの自動検出
 " ~/.vim/ftdetect/*.vim によって上書き許可
 filetype indent plugin on
 
 " -----------------------------------------------------------------------------
-"  minibufexpl 
+"  バッファ操作 
 " -----------------------------------------------------------------------------
-" バッファ操作を<C-n><C-p>で行えるようにする
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
 
@@ -121,18 +132,15 @@ augroup END
 " vim-powerline
 " -----------------------------------------------------------------------------
 " 256色モード(iTerm2+PowerLineの表示には必要)
-if stridx($TERM, "xterm-256color") >= 0
-  set t_Co=256
-else
-  set t_Co=16
-endif
-" かっこ良くする
+set t_Co=256
+
+" かっこいいバー
 let g:Powerline_symbols = 'fancy'
 
 " -----------------------------------------------------------------------------
 "  unite.vim
 " -----------------------------------------------------------------------------
-" 入力モードで開始する
+" ノーマルモードで開始する
 let g:unite_enable_start_insert=0
 " バッファ一覧
 noremap <C-U><C-B> :Unite buffer<CR>
@@ -163,3 +171,58 @@ let dbext_default_passwd=""
 let dbext_default_dbname=""
 let dbext_default_host="localhost"
 let dbext_default_buffer_lines=20
+
+" -----------------------------------------------------------------------------
+"  gtags.vim
+" -----------------------------------------------------------------------------
+" grep設定用
+nmap <C-g><C-g> :Gtags -g
+" ファイル中で定義されている関数一覧表示
+nmap <C-g><C-f> :Gtags -f %<CR>
+" 定義箇所-使用箇所を移動
+nmap <C-g><C-j> :Gtags <C-r><C-w><CR>
+" 使用箇所-定義箇所を移動
+nmap <C-g><C-k> :Gtags -r <C-r><C-w><CR>
+" カーソル位置の関数へ移動
+nmap <C-g><C-i> :GtagsCursor<CR>
+" 検索結果を閉じる
+nmap <C-c> <C-w><C-w><C-w>q
+
+" -----------------------------------------------------------------------------
+"  phpfolding
+" -----------------------------------------------------------------------------
+" PHP以外にもfoldingを適用
+augroup vimrc
+    autocmd FileType phpunit EnableFastPHPFolds
+augroup END
+
+" -----------------------------------------------------------------------------
+" vimfiler
+" -----------------------------------------------------------------------------
+let g:vimfiler_as_default_explorer=1
+let g:vimfiler_safe_mode_by_default=0
+nmap <C-u><C-v> :VimFiler -buffer-name=explorer -split -simple -winwidth=40 -no-quit<CR>
+
+" -----------------------------------------------------------------------------
+" User Functions
+" -----------------------------------------------------------------------------
+" PEAR Error Snipet
+function! PearErrorSnipet()
+    let l:cursor_word  = expand("<cword>")
+
+    let l:text = printf("if (PEAR::isError($err = $%s)) {", l:cursor_word)
+    exe "norm! o" . l:text
+    let l:text = "return $err;"
+    exe "norm! o" . l:text
+    let l:text = "}" 
+    exe "norm! o" . l:text
+endfunction
+noremap <silent> <space>p :call PearErrorSnipet()<CR>
+
+
+" -----------------------------------------------------------------------------
+"  YankTmp
+" -----------------------------------------------------------------------------
+map <silent> sy :call YanktmpYank()<CR> 
+map <silent> sp :call YanktmpPaste_p()<CR> 
+map <silent> sP :call YanktmpPaste_P()<CR> 
