@@ -1,8 +1,19 @@
 autoload -U compinit
 compinit
 
-PROMPT="%n%% "
-RPROMPT="[%~]"
+zstyle ':completion:*' list-colors ''
+autoload -Uz vcs_info
+PROMPT="%F{202}%n%%%f "
+
+zstyle ':vcs_info:*' formats '%b'
+zstyle ':vcs_info:*' actionformats '%b|%a'
+precmd () {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+RPROMPT="[%1(v|%F{82}%1v%f|) %~]"
 SPROMPT="correct: %R -> %r ? "
 HISTFILE=~/.zsh_history
 HISTSIZE=6000000
@@ -11,6 +22,8 @@ setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 
 autoload history-search-end
+autoload -U colors
+colors
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
@@ -20,21 +33,49 @@ setopt auto_cd
 setopt auto_pushd
 setopt correct
 
+setopt autolist
+setopt listtypes
+setopt nolist_ambiguous
+setopt nomenucomplete
+setopt noautoremoveslash
+setopt auto_param_keys
+setopt extendedglob
+setopt nobeep
+setopt transient_rprompt
+
 autoload zed
 
 # User specific environment and startup programs
-PATH=$PATH:$HOME/.bin:/usr/local/mysql/bin:/usr/local/share/npm/bin:/usr/local/sbin
-# LD_LIBRARY_PATH=/usr/lib64/mysql:/usr/local/lib
+PATH=$HOME/.rbenv/bin:$HOME/local/bin:$PATH:/usr/local/sbin:/home/gree/common/php/bin:/home/gree/xgree/zeta/vendor/bin
+LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 export LD_LIBRARY_PATH
 export PKG_CONFIG_PATH
 export PATH
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 alias r=rails
-alias ls="ls -G"
+alias ls="ls --color"
+alias mysql="LANG=ja_JP.eucJP mysql"
 
-eval "$(rbenv init -)"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias zeta="cd /home/gree/xgree/zeta"
+alias module="cd /home/gree/xgree/zeta/src/Gree/Zeta/Module/Zeta"
+alias dao="cd /home/gree/xgree/zeta/src/Gree/Zeta/GenericDao/Zeta"
+alias td="cd /home/gree/xgree/zeta/src/Gree/Zeta/TdGateway/Zeta"
+alias front="cd /home/gree/xgree/zeta/frontend/zeta"
+alias Service="cd /home/gree/xgree/zeta/Service/Zeta/"
 
 # 大文字小文字を区別しない補完設定
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# コマンドラインハイライト
+zle_highlight=(default:fg=82,underline isearch:bold)
+
+# XDEBUG
+export XDEBUG_CONFIG="idekey=DBGP"
+export XDEBUG_SESSION_START=DBGP
+eval "$(rbenv init -)"

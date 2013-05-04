@@ -4,9 +4,15 @@
 autocmd!
 
 " -----------------------------------------------------------------------------
+"  Pathogen
+" -----------------------------------------------------------------------------
+execute pathogen#infect()
+
+" -----------------------------------------------------------------------------
 "  Syntax
 " -----------------------------------------------------------------------------
-syntax on
+syntax enable
+let g:molokai_original=1
 colorscheme molokai
 
 " -----------------------------------------------------------------------------
@@ -56,7 +62,7 @@ set incsearch
 set hlsearch
 
 " ケースセンシティブでない検索にする
-set ignorecase
+" set ignorecase
 
 " -----------------------------------------------------------------------------
 "  vundle
@@ -94,10 +100,14 @@ Bundle 'vim-scripts/phpfolding.vim'
 Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'vim-scripts/molokai'
 Bundle 'surround.vim'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'joonty/vdebug'
+Bundle 'mikehaertl/pdv-standalone'
 
 " ファイルタイプの自動検出
 " ~/.vim/ftdetect/*.vim によって上書き許可
 filetype indent plugin on
+
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -146,6 +156,8 @@ let g:unite_enable_start_insert=0
 noremap <C-U><C-B> :Unite buffer<CR>
 " ファイル一覧
 noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
+" ファイル一覧(新規)
+noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 " 最近使ったファイルの一覧
 noremap <C-U><C-R> :Unite file_mru<CR>
 " レジスタ一覧
@@ -226,3 +238,35 @@ noremap <silent> <space>p :call PearErrorSnipet()<CR>
 map <silent> sy :call YanktmpYank()<CR> 
 map <silent> sp :call YanktmpPaste_p()<CR> 
 map <silent> sP :call YanktmpPaste_P()<CR> 
+
+
+" -----------------------------------------------------------------------------
+"  Clipboard
+" -----------------------------------------------------------------------------
+set clipboard=unnamed,autoselect
+
+" -----------------------------------------------------------------------------
+"  vdebug
+" -----------------------------------------------------------------------------
+let g:vdebug_options = {
+\    "break_on_open" : 0,
+\    "continuous_mode"  : 1,
+\}
+
+
+" -----------------------------------------------------------------------------
+"  uniteの色
+" -----------------------------------------------------------------------------
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=250 ctermfg=0
+highlight PMenuSbar ctermbg=4
+
+" -----------------------------------------------------------------------------
+"  php-doc
+" -----------------------------------------------------------------------------
+inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-D> :call PhpDocSingle()<CR>
+vnoremap <C-D> :call PhpDocRange()<CR>
+let g:pdv_cfg_Type = "mixed"
+let g:pdv_cfg_Package = "GREE"
+let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
