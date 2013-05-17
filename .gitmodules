@@ -1,3 +1,3 @@
-[submodule ".vim/vundle"]
-	path = .vim/vundle
-	url = git://github.com/gmarik/vundle.git
+[submodule ".vim/NeoBundle"]
+	path = .vim/NeoBundle
+	url = git://github.com/Shougo/neobundle.vim.git
