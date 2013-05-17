@@ -1,0 +1,6 @@
+# Usage
+---
+
+```
+% sh setting.sh
+```
