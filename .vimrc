@@ -1,12 +1,52 @@
 " -----------------------------------------------------------------------------
 "  初期化
 " -----------------------------------------------------------------------------
-autocmd!
+" vi 互換モードをオフ
+set nocompatible
 
 " -----------------------------------------------------------------------------
-"  Pathogen
+"  NeoBundle
 " -----------------------------------------------------------------------------
-execute pathogen#infect()
+" vundle 設定のためオフにする
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/NeoBundle/
+  call neobundle#rc(expand('~/.vim/bundle'))
+endif
+
+" -----------------------------------------------------------------------------
+" NeoBundle plugins
+" -----------------------------------------------------------------------------
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'tobym/vim-play'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'vim-scripts/dbext.vim'
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'vim-scripts/phpfolding.vim'
+NeoBundle 'vim-scripts/yanktmp.vim'
+NeoBundle 'vim-scripts/molokai'
+NeoBundle 'surround.vim'
+NeoBundle 'bkad/CamelCaseMotion'
+NeoBundle 'joonty/vdebug'
+NeoBundle 'mikehaertl/pdv-standalone'
+NeoBundle 'rgarver/Kwbd.vim'
+
+" ファイルタイプの自動検出
+filetype indent plugin on
 
 " -----------------------------------------------------------------------------
 "  Syntax
@@ -18,8 +58,8 @@ colorscheme molokai
 " -----------------------------------------------------------------------------
 "  基本設定
 " -----------------------------------------------------------------------------
-" vi 互換モードをオフ
-set nocompatible
+"  自動コマンド
+autocmd!
 
 " キーのリマップ
 nnoremap [ %
@@ -75,53 +115,8 @@ augroup END
 highlight CursorLine ctermbg=Black
 highlight Visual ctermbg=Gray
 
-" -----------------------------------------------------------------------------
-"  NeoBundle
-" -----------------------------------------------------------------------------
-" vundle 設定のためオフにする
-filetype off
-
-if has('vim_starting')
-  set runtimepath+='~/.vim/NeoBundle'
-
-  call neobundle#rc(expand('~/.vim/bundle'))
-endif
-
 " バッファを開いた時に、カレントディレクトリを自動で移動
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
-
-" -----------------------------------------------------------------------------
-" vundle plugins
-" -----------------------------------------------------------------------------
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'tobym/vim-play'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/dbext.vim'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/phpfolding.vim'
-NeoBundle 'vim-scripts/yanktmp.vim'
-NeoBundle 'vim-scripts/molokai'
-NeoBundle 'surround.vim'
-NeoBundle 'bkad/CamelCaseMotion'
-NeoBundle 'joonty/vdebug'
-NeoBundle 'mikehaertl/pdv-standalone'
-NeoBundle 'rgarver/Kwbd.vim'
-
-" ファイルタイプの自動検出
-" ~/.vim/ftdetect/*.vim によって上書き許可
-filetype indent plugin on
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
