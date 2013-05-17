@@ -2,26 +2,17 @@
 
 You can use the following script to install various setting files.
 
-### 0. Cloning Repository
+### 1. Cloning Repository
 
 ```
 % git clone https://github.com/akinama/dotfiles.git .dotfiles
 ```
 
-### 1. Git Submodule Update NeoBundle
+### 2. Git Submodule Update NeoBundle and Make Symbolic Links
 
-```
-% cd ~/.dotfiles
-% git submodule init
-% git submodule update
-```
-
-### 2. Make Symbolic Links
-
-1. The script make .dotfiles directory 
-2. The script make symbolic links of .vimrc, .zshrc, .tmux.conf files and .vim directory from .dotfiles directory to home directory
+1. The script make symbolic links of .vimrc, .zshrc, .tmux.conf files and .vim directory from .dotfiles directory to home directory
+2. The script updating NeoBundle submodule including "--init"
 
 ```
 % sh setting.sh
 ```
-
