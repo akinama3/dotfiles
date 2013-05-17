@@ -28,7 +28,7 @@ nnoremap [ %
 set noinsertmode
 
 " 行番号の表示
-set number
+" set number
 
 " エンコーディング設定
 set encoding=utf-8
@@ -64,14 +64,28 @@ set hlsearch
 " ケースセンシティブでない検索にする
 " set ignorecase
 
+" カレントウィンドウにのみcursorline,cursorcolumnを引く
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorcolumn nocursorline
+  autocmd WinEnter,BufRead * set cursorcolumn cursorline
+augroup END
+
+" cursorline, cursorcolumnのハイライト設定
+highlight CursorLine ctermbg=Black
+highlight Visual ctermbg=Gray
+
 " -----------------------------------------------------------------------------
-"  vundle
+"  NeoBundle
 " -----------------------------------------------------------------------------
 " vundle 設定のためオフにする
 filetype off
 
-set rtp+=~/.vim/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+='~/.vim/NeoBundle'
+
+  call neobundle#rc(expand('~/.vim/bundle'))
+endif
 
 " バッファを開いた時に、カレントディレクトリを自動で移動
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
@@ -79,35 +93,35 @@ autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 " -----------------------------------------------------------------------------
 " vundle plugins
 " -----------------------------------------------------------------------------
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimfiler'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-endwise'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Shougo/neocomplcache'
-Bundle 'thinca/vim-ref'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'tobym/vim-play'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'vim-scripts/gtags.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/phpfolding.vim'
-Bundle 'vim-scripts/yanktmp.vim'
-Bundle 'vim-scripts/molokai'
-Bundle 'surround.vim'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'joonty/vdebug'
-Bundle 'mikehaertl/pdv-standalone'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'tobym/vim-play'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'vim-scripts/dbext.vim'
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'vim-scripts/phpfolding.vim'
+NeoBundle 'vim-scripts/yanktmp.vim'
+NeoBundle 'vim-scripts/molokai'
+NeoBundle 'surround.vim'
+NeoBundle 'bkad/CamelCaseMotion'
+NeoBundle 'joonty/vdebug'
+NeoBundle 'mikehaertl/pdv-standalone'
+NeoBundle 'rgarver/Kwbd.vim'
 
 " ファイルタイプの自動検出
 " ~/.vim/ftdetect/*.vim によって上書き許可
 filetype indent plugin on
-
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -268,5 +282,17 @@ inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-D> :call PhpDocSingle()<CR>
 vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = "GREE"
+let g:pdv_cfg_Package = ""
+let g:pdv_cfg_Version = "$id:$"
 let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
+let g:pdv_cfg_Copyright = "GREE, Inc."
+
+" After phpDoc standard
+let g:pdv_cfg_CommentHead = "/**"
+let g:pdv_cfg_Comment1 = " * "
+let g:pdv_cfg_Commentn = " *"
+let g:pdv_cfg_CommentTail = " */"
+let g:pdv_cfg_CommentSingle = "//"
+
+let g:pdv_cfg_php4always = 0
+let g:pdv_cfg_php4guess = 0

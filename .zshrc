@@ -46,7 +46,7 @@ setopt transient_rprompt
 autoload zed
 
 # User specific environment and startup programs
-PATH=$HOME/.rbenv/bin:$HOME/local/bin:$PATH:/usr/local/sbin:/home/gree/common/php/bin:/home/gree/xgree/zeta/vendor/bin
+PATH=$HOME/.rbenv/bin:$HOME/local/bin:$PATH:/usr/local/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
@@ -62,12 +62,7 @@ alias mysql="LANG=ja_JP.eucJP mysql"
 
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
-alias zeta="cd /home/gree/xgree/zeta"
-alias module="cd /home/gree/xgree/zeta/src/Gree/Zeta/Module/Zeta"
-alias dao="cd /home/gree/xgree/zeta/src/Gree/Zeta/GenericDao/Zeta"
-alias td="cd /home/gree/xgree/zeta/src/Gree/Zeta/TdGateway/Zeta"
-alias front="cd /home/gree/xgree/zeta/frontend/zeta"
-alias Service="cd /home/gree/xgree/zeta/Service/Zeta/"
+alias zeta="cd /var/www/1"
 
 # 大文字小文字を区別しない補完設定
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
