@@ -38,4 +38,4 @@ You should install vim plugings via NeoBundle. You try to install as following s
 :NeoBundleInstall
 ```
 
-If you have a minutes, plugins will be installed.
+If you wait a minute, the plugins will be installed.
