@@ -14,5 +14,6 @@ You can use the following script to install various setting files.
 2. The script updating NeoBundle submodule including "--init"
 
 ```
+% cd ~/.dotfiles
 % sh setting.sh
 ```
