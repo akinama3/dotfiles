@@ -28,14 +28,12 @@ vim ~> 7.3
 
 You should install vim plugings via NeoBundle. You try to install as following sequence.
 
-1. Execute vim command
-
+* Execute vim command
 ```
 % vim
 ```
 
-2. Install vim plugins by "NeoBundle" Command(You must be in normal mode)
-
+* Install vim plugins by "NeoBundle" Command(You must be in normal mode)
 ```
 :NeoBundleInstall
 ```
