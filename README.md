@@ -17,3 +17,27 @@ You can use the following script to install various setting files.
 % cd ~/.dotfiles
 % sh setting.sh
 ```
+
+### 3. Install Vim Plugins for Vim
+
+Requirement Vim version is below.
+
+```
+vim ~> 7.3
+```
+
+You should install vim plugings via NeoBundle. You try to install as following sequence.
+
+1. Execute vim command
+
+```
+% vim
+```
+
+2. Install vim plugins by "NeoBundle" Command(You must be in normal mode)
+
+```
+:NeoBundleInstall
+```
+
+If you have a minutes, plugins will be installed.
