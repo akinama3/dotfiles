@@ -41,11 +41,14 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'vim-scripts/molokai'
+NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
 NeoBundle 'bkad/CamelCaseMotion'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'rgarver/Kwbd.vim'
+NeoBundle 'taku-o/vim-ethna-switch'
+NeoBundle 'watanabe0621/aoi-jump.vim'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -79,6 +82,7 @@ set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 set expandtab
 set shiftwidth=2
 set tabstop=2
+set softtabstop=2
 
 " バックアップファイル/スワップファイルを作成しない
 set nobackup
@@ -102,6 +106,9 @@ set hlsearch
 
 " ケースセンシティブでない検索にする
 " set ignorecase
+
+" バックスペースでインデント削除
+set backspace=indent,eol,start
 
 " カレントウィンドウにのみcursorline,cursorcolumnを引く
 augroup cch
@@ -276,8 +283,8 @@ inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-D> :call PhpDocSingle()<CR>
 vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = ""
-let g:pdv_cfg_Version = "$id:$"
+let g:pdv_cfg_Package = "Zeta"
+let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
 let g:pdv_cfg_Copyright = "GREE, Inc."
 
@@ -290,3 +297,9 @@ let g:pdv_cfg_CommentSingle = "//"
 
 let g:pdv_cfg_php4always = 0
 let g:pdv_cfg_php4guess = 0
+
+" -----------------------------------------------------------------------------
+"  MultipleSearch
+" -----------------------------------------------------------------------------
+nnoremap * :Search <C-R><C-W><CR>
+let g:MultipleSearchMaxColors = 4
