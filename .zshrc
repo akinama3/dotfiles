@@ -46,7 +46,7 @@ setopt transient_rprompt
 autoload zed
 
 # User specific environment and startup programs
-PATH=$HOME/.rbenv/bin:$HOME/local/bin:$PATH:/usr/local/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
+PATH=$HOME/.rbenv/bin:$PATH:/usr/local/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
