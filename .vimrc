@@ -51,6 +51,8 @@ NeoBundle 'taku-o/vim-ethna-switch'
 NeoBundle 'watanabe0621/aoi-jump.vim'
 NeoBundle 'akinama/vim-php-ethna-backend.vim' 
 NeoBundle 'akinama/smarty.vim' 
+NeoBundle 'vim-scripts/Align' 
+
 
 " ファイルタイプの自動検出
 filetype indent plugin on
