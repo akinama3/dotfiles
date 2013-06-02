@@ -31,6 +31,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnipet' 
+NeoBundle 'Shougo/neocomplecache-rsense' 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tobym/vim-play'
@@ -52,6 +54,8 @@ NeoBundle 'watanabe0621/aoi-jump.vim'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
 NeoBundle 'jktgr/smarty.vim' 
 NeoBundle 'vim-scripts/Align' 
+NeoBundle 'basyura/unite-rails' 
+NeoBundle 'ujihisa/unite-rake' 
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -158,6 +162,27 @@ augroup SetOmniCompletionSetting
 augroup END
 
 " -----------------------------------------------------------------------------
+"  neosnipet
+" -----------------------------------------------------------------------------
+" キーマップの設定
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" -----------------------------------------------------------------------------
 " vim-powerline
 " -----------------------------------------------------------------------------
 " 256色モード(iTerm2+PowerLineの表示には必要)
@@ -258,7 +283,6 @@ map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR> 
 map <silent> sP :call YanktmpPaste_P()<CR> 
 
-
 " -----------------------------------------------------------------------------
 "  Clipboard
 " -----------------------------------------------------------------------------
@@ -271,7 +295,6 @@ let g:vdebug_options = {
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \}
-
 
 " -----------------------------------------------------------------------------
 "  uniteの色
@@ -307,3 +330,4 @@ let g:pdv_cfg_php4guess = 0
 " -----------------------------------------------------------------------------
 nnoremap * :Search <C-R><C-W><CR>
 let g:MultipleSearchMaxColors = 4
+
