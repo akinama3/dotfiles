@@ -49,10 +49,9 @@ NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'rgarver/Kwbd.vim'
 NeoBundle 'taku-o/vim-ethna-switch'
 NeoBundle 'watanabe0621/aoi-jump.vim'
-NeoBundle 'akinama/vim-php-ethna-backend.vim' 
-NeoBundle 'akinama/smarty.vim' 
+NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
+NeoBundle 'jktgr/smarty.vim' 
 NeoBundle 'vim-scripts/Align' 
-
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -155,6 +154,7 @@ augroup SetOmniCompletionSetting
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 augroup END
 
 " -----------------------------------------------------------------------------
