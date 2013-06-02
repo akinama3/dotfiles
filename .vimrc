@@ -31,8 +31,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnipet' 
-NeoBundle 'Shougo/neocomplecache-rsense' 
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neocomplcache-rsense'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tobym/vim-play'
@@ -152,17 +152,22 @@ let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_underbar_completion = 1
 " キャメルケースによるあいまい検索
 let g:neocomplcache_enable_camel_case_completion = 1
-"オムニ補完
+" オムニ補完
 augroup SetOmniCompletionSetting
   autocmd!
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  " Enable heavy omni completion
+  if !exists('g:neocomplcache_omni_patterns')
+      let g:neocomplcache_omni_patterns = {}
+  endif
+  let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 augroup END
 
 " -----------------------------------------------------------------------------
-"  neosnipet
+"  neosnippet
 " -----------------------------------------------------------------------------
 " キーマップの設定
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
