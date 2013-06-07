@@ -37,7 +37,7 @@ setopt autolist
 setopt listtypes
 setopt nolist_ambiguous
 setopt nomenucomplete
-setopt noautoremoveslash
+setopt autoremoveslash
 setopt auto_param_keys
 setopt extendedglob
 setopt nobeep
