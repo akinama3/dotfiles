@@ -3,7 +3,7 @@ compinit
 
 zstyle ':completion:*' list-colors ''
 autoload -Uz vcs_info
-PROMPT="%F{202}%n%%%f "
+PROMPT="%F{208}%n%%%f "
 
 zstyle ':vcs_info:*' formats '%b'
 zstyle ':vcs_info:*' actionformats '%b|%a'
@@ -68,7 +68,7 @@ alias zeta="cd /var/www/1"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # コマンドラインハイライト
-zle_highlight=(default:fg=82,underline isearch:bold)
+zle_highlight=(default:fg=82,underline isearch:bold suffix:fg=208)
 
 # XDEBUG
 export XDEBUG_CONFIG="idekey=DBGP"

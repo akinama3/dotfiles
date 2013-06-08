@@ -344,7 +344,7 @@ inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-D> :call PhpDocSingle()<CR>
 vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = "Zeta"
+let g:pdv_cfg_Package = "Gree Senior"
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
 let g:pdv_cfg_Copyright = "GREE, Inc."
@@ -365,3 +365,19 @@ let g:pdv_cfg_php4guess = 0
 nnoremap * :Search <C-R><C-W><CR>
 let g:MultipleSearchMaxColors = 4
 
+" -----------------------------------------------------------------------------
+"  Aoi Jump
+" -----------------------------------------------------------------------------
+" grep command setting
+set grepprg=grep\ -nH
+
+" aoi grep
+nnoremap <silent> <space>ag :call AoiGrep()<CR>
+" jump to aoi module
+nnoremap <silent> <space>am :call AoiModuleJump()<CR>
+" jump to aoi processor
+nnoremap <silent> <space>ap :call AoiProcessorJump()<CR>
+" jump to aoi client
+nnoremap <silent> <space>ac :call AoiClientJump()<CR>
+" jump to smarty include file
+nnoremap <silent> <space>i  :call SmartyJump()<CR>
