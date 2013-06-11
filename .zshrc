@@ -3,7 +3,10 @@ compinit
 
 zstyle ':completion:*' list-colors ''
 autoload -Uz vcs_info
+
 PROMPT="%F{208}%n%%%f "
+RPROMPT="[%1(v|%F{82}%1v%f|) %~]"
+SPROMPT="correct: %R -> %r ? "
 
 zstyle ':vcs_info:*' formats '%b'
 zstyle ':vcs_info:*' actionformats '%b|%a'
@@ -13,8 +16,6 @@ precmd () {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
-RPROMPT="[%1(v|%F{82}%1v%f|) %~]"
-SPROMPT="correct: %R -> %r ? "
 HISTFILE=~/.zsh_history
 HISTSIZE=6000000
 SAVEHIST=6000000
@@ -42,6 +43,8 @@ setopt auto_param_keys
 setopt extendedglob
 setopt nobeep
 setopt transient_rprompt
+setopt prompt_subst
+
 
 autoload zed
 
@@ -68,9 +71,13 @@ alias zeta="cd /var/www/1"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # コマンドラインハイライト
-zle_highlight=(default:fg=82,underline isearch:bold suffix:fg=208)
+source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zle_highlight=(isearch:bold suffix:fg=208)
 
 # XDEBUG
 export XDEBUG_CONFIG="idekey=DBGP"
 export XDEBUG_SESSION_START=DBGP
 eval "$(rbenv init -)"
+
+# For Tmux PowerLine
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

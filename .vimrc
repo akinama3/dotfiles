@@ -24,27 +24,22 @@ endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'tobym/vim-play'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/dbext.vim'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/phpfolding.vim'
-NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'vim-scripts/molokai'
 NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
-NeoBundle 'bkad/CamelCaseMotion'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'rgarver/Kwbd.vim'
@@ -62,7 +57,7 @@ filetype indent plugin on
 " -----------------------------------------------------------------------------
 "  Syntax
 " -----------------------------------------------------------------------------
-syntax enable
+syntax on
 let g:molokai_original=1
 colorscheme molokai
 
@@ -144,7 +139,7 @@ let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
@@ -175,7 +170,7 @@ function! s:my_cr_function()
   "return pumvisible() ?  neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
@@ -186,7 +181,6 @@ inoremap <expr><C-e> neocomplete#cancel_popup()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -236,8 +230,6 @@ noremap <C-U><C-B> :Unite buffer<CR>
 noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
 " ファイル一覧(新規)
 noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
-" 最近使ったファイルの一覧
-noremap <C-U><C-R> :Unite file_mru<CR>
 " レジスタ一覧
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
@@ -250,17 +242,6 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "  vim-ref
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
-
-" -----------------------------------------------------------------------------
-"  dbext
-" -----------------------------------------------------------------------------
-let dbext_default_profile=""
-let dbext_default_type="MYSQL"
-let dbext_default_user="root"
-let dbext_default_passwd=""
-let dbext_default_dbname=""
-let dbext_default_host="localhost"
-let dbext_default_buffer_lines=20
 
 " -----------------------------------------------------------------------------
 "  gtags.vim
@@ -285,13 +266,6 @@ nmap <C-c> <C-w><C-w><C-w>q
 augroup vimrc
     autocmd FileType phpunit EnableFastPHPFolds
 augroup END
-
-" -----------------------------------------------------------------------------
-" vimfiler
-" -----------------------------------------------------------------------------
-let g:vimfiler_as_default_explorer=1
-let g:vimfiler_safe_mode_by_default=0
-nmap <C-u><C-v> :VimFiler -buffer-name=explorer -split -simple -winwidth=40 -no-quit<CR>
 
 " -----------------------------------------------------------------------------
 " User Functions
@@ -344,7 +318,7 @@ inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-D> :call PhpDocSingle()<CR>
 vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = "Gree Senior"
+let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
 let g:pdv_cfg_Copyright = "GREE, Inc."
@@ -381,3 +355,9 @@ nnoremap <silent> <space>ap :call AoiProcessorJump()<CR>
 nnoremap <silent> <space>ac :call AoiClientJump()<CR>
 " jump to smarty include file
 nnoremap <silent> <space>i  :call SmartyJump()<CR>
+
+
+" -----------------------------------------------------------------------------
+"  Unite Rails
+" -----------------------------------------------------------------------------
+nnoremap <C-u><C-r> :Unite rails/
