@@ -125,6 +125,9 @@ highlight Visual ctermbg=Gray
 " バッファを開いた時に、カレントディレクトリを自動で移動
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
+" バッファを保存した時にgtags -vを走らせる
+autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -v >& /dev/null &"
+
 " -----------------------------------------------------------------------------
 "  バッファ操作 
 " -----------------------------------------------------------------------------
@@ -356,8 +359,9 @@ nnoremap <silent> <space>ac :call AoiClientJump()<CR>
 " jump to smarty include file
 nnoremap <silent> <space>i  :call SmartyJump()<CR>
 
-
 " -----------------------------------------------------------------------------
 "  Unite Rails
 " -----------------------------------------------------------------------------
 nnoremap <C-u><C-r> :Unite rails/
+
+
