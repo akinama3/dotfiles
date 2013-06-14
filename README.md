@@ -23,7 +23,7 @@ You can use the following script to install various setting files.
 Requirement Vim version is below.
 
 ```
-vim ~> 7.3
+vim ~> 7.3 (~> patch 885)
 ```
 
 You should install vim plugings via NeoBundle. You try to install as following sequence.
