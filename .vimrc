@@ -41,7 +41,7 @@ NeoBundle 'vim-scripts/molokai'
 NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
 NeoBundle 'joonty/vdebug'
-NeoBundle 'mikehaertl/pdv-standalone'
+NeoBundle 'jktgr/pdv-standalone'
 NeoBundle 'rgarver/Kwbd.vim'
 NeoBundle 'taku-o/vim-ethna-switch'
 NeoBundle 'watanabe0621/aoi-jump.vim'
@@ -317,24 +317,27 @@ highlight PMenuSbar ctermbg=4
 " -----------------------------------------------------------------------------
 "  php-doc
 " -----------------------------------------------------------------------------
-inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-D> :call PhpDocSingle()<CR>
-vnoremap <C-D> :call PhpDocRange()<CR>
+autocmd FileType php inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
+autocmd FileType php nnoremap <C-D> :call PhpDocSingle()<CR>
+autocmd FileType php vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
 let g:pdv_cfg_Copyright = "GREE, Inc."
+let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
+let g:pdv_cfg_License = ""
 
 " After phpDoc standard
 let g:pdv_cfg_CommentHead = "/**"
 let g:pdv_cfg_Comment1 = " * "
 let g:pdv_cfg_Commentn = " *"
 let g:pdv_cfg_CommentTail = " */"
-let g:pdv_cfg_CommentSingle = "//"
+let g:pdv_cfg_CommentSingle = "// "
 
+" Attributes settings
+let g:pdv_cfg_Uses       = 0
 let g:pdv_cfg_php4always = 0
-let g:pdv_cfg_php4guess = 0
+let g:pdv_cfg_php4guess  = 0
 
 " -----------------------------------------------------------------------------
 "  MultipleSearch
