@@ -36,7 +36,6 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'vim-scripts/molokai'
 NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
@@ -105,11 +104,11 @@ set incsearch
 " 検索ワードをハイライトする
 set hlsearch
 
-" ケースセンシティブでない検索にする
-" set ignorecase
-
 " バックスペースでインデント削除
 set backspace=indent,eol,start
+
+" システムを取得する
+let OSTYPE = system('cat /etc/issus')
 
 " カレントウィンドウにのみcursorline,cursorcolumnを引く
 augroup cch
@@ -263,14 +262,6 @@ nmap <C-g><C-i> :GtagsCursor<CR>
 nmap <C-c> <C-w><C-w><C-w>q
 
 " -----------------------------------------------------------------------------
-"  phpfolding
-" -----------------------------------------------------------------------------
-" PHP以外にもfoldingを適用
-augroup vimrc
-    autocmd FileType phpunit EnableFastPHPFolds
-augroup END
-
-" -----------------------------------------------------------------------------
 " User Functions
 " -----------------------------------------------------------------------------
 " PEAR Error Snipet
@@ -315,8 +306,13 @@ autocmd FileType php vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Copyright = "GREE, Inc."
-let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
+if OSTYPE =~ "Debian"
+  let g:pdv_cfg_Copyright = "GREE, Inc."
+  let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
+else
+  let g:pdv_cfg_Copyright = "All Rights Reserved <https://github.com/jktgr>"
+  let g:pdv_cfg_Author = "Jun Katagiri <katagiri.jun2@gmail.com>"
+end
 let g:pdv_cfg_License = ""
 
 " After phpDoc standard

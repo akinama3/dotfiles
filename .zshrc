@@ -56,8 +56,8 @@ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export LD_LIBRARY_PATH
 export PKG_CONFIG_PATH
 export PATH
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 
 alias r=rails
 alias ls="ls --color"
