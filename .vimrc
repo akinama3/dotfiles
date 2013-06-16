@@ -108,10 +108,7 @@ set hlsearch
 set backspace=indent,eol,start
 
 " 日本語のズレを無くす
-" set ambiwidth=double
-
-" システムを取得する
-let OSTYPE = system('cat /etc/issus')
+set ambiwidth=double
 
 " カレントウィンドウにのみcursorline,cursorcolumnを引く
 augroup cch
@@ -309,13 +306,8 @@ autocmd FileType php vnoremap <C-D> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
-if OSTYPE =~ "Debian"
-  let g:pdv_cfg_Copyright = "GREE, Inc."
-  let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
-else
-  let g:pdv_cfg_Copyright = "All Rights Reserved <https://github.com/jktgr>"
-  let g:pdv_cfg_Author = "Jun Katagiri <katagiri.jun2@gmail.com>"
-end
+let g:pdv_cfg_Copyright = "GREE, Inc."
+let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
 let g:pdv_cfg_License = ""
 
 " After phpDoc standard
