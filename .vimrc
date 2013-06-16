@@ -107,6 +107,9 @@ set hlsearch
 " バックスペースでインデント削除
 set backspace=indent,eol,start
 
+" 日本語のズレを無くす
+" set ambiwidth=double
+
 " システムを取得する
 let OSTYPE = system('cat /etc/issus')
 
