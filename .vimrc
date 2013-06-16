@@ -331,6 +331,7 @@ let g:pdv_cfg_php4guess  = 0
 "  MultipleSearch
 " -----------------------------------------------------------------------------
 nnoremap * :Search <C-R><C-W><CR>
+nnoremap + :SearchReset<CR>
 let g:MultipleSearchMaxColors = 4
 
 " -----------------------------------------------------------------------------
