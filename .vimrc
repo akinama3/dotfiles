@@ -253,9 +253,9 @@ nmap <C-g><C-g> :Gtags -g
 " ファイル中で定義されている関数一覧表示
 nmap <C-g><C-f> :Gtags -f %<CR>
 " 定義箇所-使用箇所を移動
-nmap <C-g><C-j> :Gtags <C-r><C-w><CR>
+nmap <C-g><C-j> :Gtags -a <C-r><C-w><CR>
 " 使用箇所-定義箇所を移動
-nmap <C-g><C-k> :Gtags -r <C-r><C-w><CR>
+nmap <C-g><C-k> :Gtags -ar <C-r><C-w><CR>
 " カーソル位置の関数へ移動
 nmap <C-g><C-i> :GtagsCursor<CR>
 " 検索結果を閉じる
