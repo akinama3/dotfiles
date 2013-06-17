@@ -26,3 +26,11 @@ if [ -e ~/.tmux.conf ]; then
   rm -f ~/.tmux.conf 
 fi
 ln -s ~/$DOTFILES_DIR/.tmux.conf ~/.tmux.conf
+
+# tmux popdwerline
+if [ -e ~/.tmux-powerlinerc ]; then
+  rm -f ~/.tmux-powerlinerc
+fi
+ln -s ~/$DOTFILES_DIR/.tmux-powerlinerc ~/.tmux-powerlinerc
+
+
