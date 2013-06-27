@@ -126,6 +126,7 @@ autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -vを走らせる
 autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -v >& /dev/null &"
+autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 2052160 &"
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -324,6 +325,12 @@ nnoremap + :SearchReset<CR>
 let g:MultipleSearchMaxColors = 4
 
 " -----------------------------------------------------------------------------
+"  C/Migemo 日本語インクリメンタルサーチ
+" -----------------------------------------------------------------------------
+"  インストールが必要です http://deris.hatenablog.jp/entry/20120812/1344731592
+nnoremap / :Migemo 
+
+" -----------------------------------------------------------------------------
 "  Aoi Jump
 " -----------------------------------------------------------------------------
 " grep command setting
@@ -344,5 +351,4 @@ nnoremap <silent> <space>i  :call SmartyJump()<CR>
 "  Unite Rails
 " -----------------------------------------------------------------------------
 nnoremap <C-u><C-r> :Unite rails/
-
 
