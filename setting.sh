@@ -48,4 +48,4 @@ sudo make gcc-install
 # Pluginをコピーする
 cp -p tools/migemo.vim ~/.vim/plugin/
 cd ..
-rm -rf cmigemo
+sudo rm -rf cmigemo
