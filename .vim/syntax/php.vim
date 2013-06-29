@@ -282,12 +282,12 @@ syn keyword phpType bool[ean] int[eger] real double float string array object NU
 syn keyword phpStructure  namespace extends implements instanceof parent self contained
 
 " Operator
-syn match phpOperator "[-=+%^&|*!.~?:]" contained display
-syn match phpOperator "[-+*/%^&|.]="  contained display
-syn match phpOperator "/[^*/]"me=e-1  contained display
-syn match phpOperator "\$"  contained display
-syn match phpOperator "&&\|\<and\>" contained display
-syn match phpOperator "||\|\<x\=or\>" contained display
+" syn match phpOperator "[-=+%^&|*!.~?:]" contained display
+" syn match phpOperator "[-+*/%^&|.]="  contained display
+" syn match phpOperator "/[^*/]"me=e-1  contained display
+" syn match phpOperator "\$"  contained display
+" syn match phpOperator "&&\|\<and\>" contained display
+" syn match phpOperator "||\|\<x\=or\>" contained display
 syn match phpRelation "[!=<>]=" contained display
 syn match phpRelation "[<>]"  contained display
 syn match phpMemberSelector "->"  contained display
@@ -347,7 +347,7 @@ syn match phpNumber "-\=\<\d\+\>" contained display
 syn match phpNumber "\<0x\x\{1,8}\>"  contained display
 
 " Float
-syn match phpFloat  "\(-\=\<\d+\|-\=\)\.\d\+\>" contained display
+" syn match phpFloat  "\(-\=\<\d+\|-\=\)\.\d\+\>" contained display
 
 " Backslash escapes
 	syn case match
@@ -555,23 +555,23 @@ if php_special_functions
   \ user_error trigger_error isset unset eval extract compact empty
 endif
 
-if php_alt_assignByReference
+" if php_alt_assignByReference
     " special highlighting for '=&' operator
-    syntax match phpAssignByRef /=\s*&/ containedin=ALLBUT,phpComment,phpStringDouble,phpStringSingle
-    highlight link phpAssignByRef Type
-endif
+    " syntax match phpAssignByRef /=\s*&/ containedin=ALLBUT,phpComment,phpStringDouble,phpStringSingle
+    " highlight link phpAssignByRef Type
+" endif
 
-if php_alt_comparisons
+" if php_alt_comparisons
   " highlight comparison operators differently
-  syntax match phpComparison "\v[=!]\=\=?" contained containedin=phpRegion
-  syntax match phpComparison "\v[=<>-]@<![<>]\=?[<>]@!" contained containedin=phpRegion
+  " syntax match phpComparison "\v[=!]\=\=?" contained containedin=phpRegion
+  " syntax match phpComparison "\v[=<>-]@<![<>]\=?[<>]@!" contained containedin=phpRegion
 
   " highlight the 'instanceof' operator as a comparison operator rather than a structure
-  syntax case ignore
-  syntax keyword phpComparison instanceof contained containedin=phpRegion
+  " syntax case ignore
+  " syntax keyword phpComparison instanceof contained containedin=phpRegion
 
-  hi link phpComparison Statement
-endif
+  " hi link phpComparison Statement
+" endif
 
 " ================================================================
 
@@ -586,7 +586,7 @@ if php_sync_method==-1
   if exists("php_asp_tags")
     syn sync match phpRegionSync grouphere phpRegionAsp "^\s*<%\(=\)\=\s*$"
   endif
-  syn sync match phpRegionSync grouphere NONE "^\s*?>\s*$"
+  " syn sync match phpRegionSync grouphere NONE "^\s*?>\s*$"
   syn sync match phpRegionSync grouphere NONE "^\s*%>\s*$"
   syn sync match phpRegionSync grouphere phpRegion "function\s.*(.*\$"
   "syn sync match phpRegionSync grouphere NONE "/\i*>\s*$"

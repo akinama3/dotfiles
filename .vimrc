@@ -40,15 +40,17 @@ NeoBundle 'vim-scripts/molokai'
 NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
 NeoBundle 'joonty/vdebug'
-NeoBundle 'jktgr/pdv-standalone'
 NeoBundle 'rgarver/Kwbd.vim'
 NeoBundle 'taku-o/vim-ethna-switch'
 NeoBundle 'watanabe0621/aoi-jump.vim'
-NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
-NeoBundle 'jktgr/smarty.vim' 
+NeoBundle 'watanabe0621/SmartyJump'
 NeoBundle 'vim-scripts/Align' 
 NeoBundle 'basyura/unite-rails' 
 NeoBundle 'ujihisa/unite-rake' 
+NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
+NeoBundle 'jktgr/smarty.vim' 
+NeoBundle 'jktgr/pdv-standalone'
+NeoBundle 'jktgr/phpfolding.vim'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -295,9 +297,9 @@ highlight PMenuSbar ctermbg=4
 " -----------------------------------------------------------------------------
 "  php-doc
 " -----------------------------------------------------------------------------
-autocmd FileType php inoremap <C-D> <ESC>:call PhpDocSingle()<CR>i
-autocmd FileType php nnoremap <C-D> :call PhpDocSingle()<CR>
-autocmd FileType php vnoremap <C-D> :call PhpDocRange()<CR>
+autocmd FileType php inoremap <C-@> <ESC>:call PhpDocSingle()<CR>i
+autocmd FileType php nnoremap <C-@> :call PhpDocSingle()<CR>
+autocmd FileType php vnoremap <C-@> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
@@ -346,3 +348,17 @@ nnoremap <silent> <space>i  :call SmartyJump()<CR>
 " -----------------------------------------------------------------------------
 nnoremap <C-u><C-r> :Unite rails/
 
+" -----------------------------------------------------------------------------
+"  Vim Ethna Switch
+" -----------------------------------------------------------------------------
+nnoremap <C-e>a :ETA<CR>
+nnoremap <C-e>t :ETT<CR>
+nnoremap <C-e>v :ETV<CR>
+
+" -----------------------------------------------------------------------------
+"  PHP Folding
+" -----------------------------------------------------------------------------
+augroup vimrc
+    autocmd FileType phpunit EnableFastPHPFolds
+augroup END
+set re=1
