@@ -49,24 +49,35 @@ setopt prompt_subst
 autoload zed
 
 # User specific environment and startup programs
-PATH=$HOME/.rbenv/bin:/usr/local/ethnam/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
+PATH=$HOME/.rbenv/bin:/usr/local/php5/bin:/usr/local/ethnam/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 export LD_LIBRARY_PATH
 export PKG_CONFIG_PATH
 export PATH
-export LANG="en_US.UTF-8"
-export LANGUAGE="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
+# OSのタイプによって切り分け
+case "$OSTYPE" in
+  darwin*)
+    alias ls="ls -G"
+    export LANG="ja_JP.UTF-8"
+    export LANGUAGE="ja_JP.UTF-8"
+    export LC_ALL="ja_JP.UTF-8"
+    ;;
+  linux*)
+    alias ls="ls --color"
+    alias zeta="cd /var/www/1"
+    alias mysql="LANG=ja_JP.eucJP mysql"
+    export LANG="en_US.UTF-8"
+    export LANGUAGE="en_US.UTF-8"
+    export LC_ALL="en_US.UTF-8"
+    ;;
+esac
 
 alias r=rails
-alias ls="ls --color"
-alias mysql="LANG=ja_JP.eucJP mysql"
 
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
-alias zeta="cd /var/www/1"
 
 # 大文字小文字を区別しない補完設定
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

@@ -361,4 +361,3 @@ nnoremap <C-e>v :ETV<CR>
 augroup vimrc
     autocmd FileType phpunit EnableFastPHPFolds
 augroup END
-set re=1
