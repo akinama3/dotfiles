@@ -47,6 +47,7 @@ NeoBundle 'watanabe0621/SmartyJump'
 NeoBundle 'vim-scripts/Align' 
 NeoBundle 'basyura/unite-rails' 
 NeoBundle 'ujihisa/unite-rake' 
+NeoBundle 'jktgr/vim-json'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
 NeoBundle 'jktgr/smarty.vim' 
 NeoBundle 'jktgr/pdv-standalone'
@@ -82,9 +83,9 @@ set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 
 " 基本のインデント設定(各拡張子毎の設定は別途)
 set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 " バックアップファイル/スワップファイルを作成しない
 set nobackup
