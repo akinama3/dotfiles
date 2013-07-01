@@ -48,6 +48,7 @@ NeoBundle 'vim-scripts/Align'
 NeoBundle 'basyura/unite-rails' 
 NeoBundle 'ujihisa/unite-rake' 
 NeoBundle 'jktgr/vim-json'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim' 
 NeoBundle 'jktgr/smarty.vim' 
 NeoBundle 'jktgr/pdv-standalone'
@@ -362,3 +363,12 @@ nnoremap <C-e>v :ETV<CR>
 augroup vimrc
     autocmd FileType phpunit EnableFastPHPFolds
 augroup END
+
+" -----------------------------------------------------------------------------
+"  Vim Indent Guides
+" -----------------------------------------------------------------------------
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+hi IndentGuidesOdd  ctermbg=236
+hi IndentGuidesEven ctermbg=235
