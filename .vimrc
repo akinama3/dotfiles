@@ -24,14 +24,13 @@ endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/gtags.vim'
@@ -52,6 +51,7 @@ NeoBundle 'jktgr/vim-php-ethna-backend.vim'
 NeoBundle 'jktgr/smarty.vim' 
 NeoBundle 'jktgr/pdv-standalone'
 NeoBundle 'jktgr/phpfolding.vim'
+NeoBundle 'jktgr/neosnippet.vim'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
