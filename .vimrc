@@ -223,6 +223,8 @@ noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
+" 再帰的にゼータディレクトリを更新
+noremap <C-U><C-A> :lcd /var/www/1<CR>:Unite file_rec<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
