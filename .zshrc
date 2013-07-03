@@ -74,6 +74,7 @@ case "$OSTYPE" in
     ;;
 esac
 
+alias vi=vim
 alias r=rails
 
 alias grep="grep --color=auto"
