@@ -46,12 +46,14 @@ NeoBundle 'watanabe0621/SmartyJump'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ujihisa/unite-rake'
+NeoBundle 'ujihisa/unite-locate'
+NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'jktgr/vim-json'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim'
 NeoBundle 'jktgr/smarty.vim'
-NeoBundle 'jktgr/pdv-standalone'
 NeoBundle 'jktgr/phpfolding.vim'
 NeoBundle 'jktgr/neosnippet.vim'
+NeoBundle 'hk4nsuke/unite-gtags'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -226,10 +228,12 @@ noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
-noremap <C-U><C-A> :lcd /var/www/1<CR>:Unite file_rec<CR>
+noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+call unite#custom_source('file_rec', 'ignore_pattern', '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<data\>\|\<tmp\>\|\<lib\>')
 
 " -----------------------------------------------------------------------------
 "  vim-ref
@@ -237,36 +241,14 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
 
 " -----------------------------------------------------------------------------
-"  gtags.vim
+"  unite-gtags.vim
 " -----------------------------------------------------------------------------
 " grep設定用
-nmap <C-g><C-g> :Gtags -g
-" ファイル中で定義されている関数一覧表示
-nmap <C-g><C-f> :Gtags -f %<CR>
-" 定義箇所-使用箇所を移動
-nmap <C-g><C-j> :Gtags -a <C-r><C-w><CR>
+nmap <C-g><C-g> :Unite gtags/grep<CR>
 " 使用箇所-定義箇所を移動
-nmap <C-g><C-k> :Gtags -ar <C-r><C-w><CR>
-" カーソル位置の関数へ移動
-nmap <C-g><C-i> :GtagsCursor<CR>
-" 検索結果を閉じる
-nmap <C-c> <C-w><C-w><C-w>q
-
-" -----------------------------------------------------------------------------
-" User Functions
-" -----------------------------------------------------------------------------
-" PEAR Error Snipet
-function! PearErrorSnipet()
-    let l:cursor_word  = expand("<cword>")
-
-    let l:text = printf("if (PEAR::isError($err = $%s)) {", l:cursor_word)
-    exe "norm! o" . l:text
-    let l:text = "return $err;"
-    exe "norm! o" . l:text
-    let l:text = "}" 
-    exe "norm! o" . l:text
-endfunction
-noremap <silent> <space>p :call PearErrorSnipet()<CR>
+nmap <C-g><C-j> :Unite gtags/def<CR>
+" 定義箇所-使用箇所を移動
+nmap <C-g><C-k> :Unite gtags/ref<CR>
 
 " -----------------------------------------------------------------------------
 "  Clipboard
@@ -298,7 +280,7 @@ let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Copyright = "GREE, Inc."
-let g:pdv_cfg_Author = "Jun Katagiri <jun.katagiri@gree.net>"
+let g:pdv_cfg_Author = ""
 let g:pdv_cfg_License = ""
 
 " After phpDoc standard
@@ -355,3 +337,17 @@ nnoremap <C-e>v :ETV<CR>
 augroup vimrc
     autocmd FileType phpunit EnableFastPHPFolds
 augroup END
+
+" -----------------------------------------------------------------------------
+"  PEAR Error check 補完君
+" -----------------------------------------------------------------------------
+function! PearErrorSnipet()
+    let l:cursor_word  = expand("<cword>")
+    let l:text = printf("if (PEAR::isError($%s)) {", l:cursor_word)
+    exe "norm! o" . l:text
+    let l:text = printf("return $%s;", l:cursor_word)
+    exe "norm! o" . l:text
+    let l:text = "}"
+    exe "norm! o" . l:text
+endfunction
+noremap <silent> <space>p :call PearErrorSnipet()<CR>
