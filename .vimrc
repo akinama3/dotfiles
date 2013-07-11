@@ -218,7 +218,7 @@ let g:unite_enable_start_insert=1
 let g:unite_source_rec_min_cache_files=100
 let g:unite_source_rec_max_cache_files=100000
 " バッファ一覧
-noremap <C-U><C-B> :Unite buffer<CR>
+noremap <C-U><C-B> :lcd /var/www/1<CR>:Unite buffer<CR>
 " ファイル一覧
 noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
 " ファイル一覧(新規)
@@ -226,7 +226,7 @@ noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 " レジスタ一覧
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
-noremap <C-U><C-U> :Unite buffer file_mru<CR>
+noremap <C-U><C-U> :lcd /var/www/1<CR>:Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
 noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
 " ESCキーを2回押すと終了する
