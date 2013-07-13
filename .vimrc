@@ -144,8 +144,7 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
       \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ 'vimshell' : $HOME.'/.vimshell_hist'
       \ }
 
 " Define keyword.
@@ -251,6 +250,11 @@ nmap <C-g><C-j> :Unite gtags/def<CR>
 nmap <C-g><C-k> :Unite gtags/ref<CR>
 
 " -----------------------------------------------------------------------------
+"  unite-locate.vim
+" -----------------------------------------------------------------------------
+noremap <C-U><C-L> :Unite locate<CR>
+
+" -----------------------------------------------------------------------------
 "  Clipboard
 " -----------------------------------------------------------------------------
 set clipboard=unnamed,autoselect
@@ -325,11 +329,14 @@ nnoremap <silent> <space>i  :call SmartyJump()<CR>
 nnoremap <C-u><C-r> :Unite rails/
 
 " -----------------------------------------------------------------------------
-"  Vim Ethna Switch
+"  Vim Ethna Switch & Ethna Backend Switch
 " -----------------------------------------------------------------------------
-nnoremap <C-e>a :ETA<CR>
-nnoremap <C-e>t :ETT<CR>
-nnoremap <C-e>v :ETV<CR>
+nnoremap <silent> <space>ea :ETA<CR>
+nnoremap <silent> <space>et :ETT<CR>
+nnoremap <silent> <space>ev :ETV<CR>
+nnoremap <silent> <space>bg :EBGenericDao<CR>
+nnoremap <silent> <space>bt :EBTdGateway<CR>
+nnoremap <silent> <space>bm :EBModule<CR>
 
 " -----------------------------------------------------------------------------
 "  PHP Folding
