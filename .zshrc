@@ -27,6 +27,7 @@ autoload -U colors
 colors
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+bindkey "^U" backward-kill-line
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
