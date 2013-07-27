@@ -26,6 +26,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
@@ -180,11 +181,14 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion.
+" Enable php completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = 
+            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
+
 
 " -----------------------------------------------------------------------------
 "  neosnippet
@@ -239,12 +243,16 @@ noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-call unite#custom_source('file_rec', 'ignore_pattern', '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+call unite#custom_source(
+            \ 'file_rec', 
+            \ 'ignore_pattern',
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
 
 " -----------------------------------------------------------------------------
 "  vim-ref
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
+nnoremap <silent> <space>rp :Ref phpmanual 
 
 " -----------------------------------------------------------------------------
 "  unite-gtags.vim
