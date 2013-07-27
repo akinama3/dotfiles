@@ -177,7 +177,14 @@ inoremap <expr><C-e> neocomplete#cancel_popup()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " -----------------------------------------------------------------------------
 "  neosnippet
@@ -327,6 +334,9 @@ nnoremap <silent> <space>i  :call SmartyJump()<CR>
 "  Unite Rails
 " -----------------------------------------------------------------------------
 nnoremap <C-u><C-r> :Unite rails/
+nnoremap <silent> <space>rc :Unite rails/controller<CR>
+nnoremap <silent> <space>rm :Unite rails/model<CR>
+nnoremap <silent> <space>rv :Unite rails/view<CR>
 
 " -----------------------------------------------------------------------------
 "  Vim Ethna Switch & Ethna Backend Switch
