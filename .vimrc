@@ -25,6 +25,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
@@ -52,7 +53,6 @@ NeoBundle 'jktgr/vim-json'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim'
 NeoBundle 'jktgr/smarty.vim'
 NeoBundle 'jktgr/phpfolding.vim'
-NeoBundle 'jktgr/neosnippet.vim'
 NeoBundle 'hk4nsuke/unite-gtags'
 
 " ファイルタイプの自動検出
@@ -232,7 +232,7 @@ noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-call unite#custom_source('file_rec', 'ignore_pattern', '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<data\>\|\<tmp\>\|\<lib\>')
+call unite#custom_source('file_rec', 'ignore_pattern', '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
 
 " -----------------------------------------------------------------------------
 "  vim-ref
