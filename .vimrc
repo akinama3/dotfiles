@@ -120,8 +120,9 @@ set ambiwidth=double
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -vを走らせる
-autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -v >& /dev/null &"
+autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -v /mnt/ramdisk >& /dev/null &"
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 2052160 &"
+autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 542675 &"
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -184,12 +185,12 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable php completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = 
-            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"     let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" let g:neocomplete#sources#omni#input_patterns.php = 
+"             \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+" inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
 
 
 " -----------------------------------------------------------------------------
@@ -229,6 +230,9 @@ let g:Powerline_symbols = 'fancy'
 let g:unite_enable_start_insert=1
 let g:unite_source_rec_min_cache_files=100
 let g:unite_source_rec_max_cache_files=100000
+let g:unite_source_file_mru_limit=2000
+let g:unite_enable_ignore_case=1
+
 " バッファ一覧
 noremap <C-U><C-B> :Unite buffer<CR>
 " ファイル一覧
@@ -254,7 +258,7 @@ call unite#custom_source(
 "  vim-ref
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
-nnoremap <silent> <space>rp :Ref phpmanual 
+nnoremap <silent> <space>ref :Ref phpmanual 
 
 " -----------------------------------------------------------------------------
 "  unite-gtags.vim
