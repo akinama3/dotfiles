@@ -93,5 +93,8 @@ export XDEBUG_CONFIG="idekey=DBGP"
 export XDEBUG_SESSION_START=DBGP
 eval "$(rbenv init -)"
 
+# ctags for GNU Global
+export GTAGSLABEL=exuberant-ctags
+
 # For Tmux PowerLine
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

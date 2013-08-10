@@ -33,19 +33,5 @@ if [ -e ~/.tmux-powerlinerc ]; then
 fi
 ln -s ~/$DOTFILES_DIR/.tmux-powerlinerc ~/.tmux-powerlinerc
 
-# C/Migemoのインストール
-if [ ! -d ~/.vim/plugin ]; then
-  mkdir ~/.vim/plugin
-fi
-
-hg clone https://code.google.com/p/cmigemo/
-cd cmigemo
-./configure
-make gcc
-make gcc-dict
-sudo make gcc-install
-
-# Pluginをコピーする
-cp -p tools/migemo.vim ~/.vim/plugin/
-cd ..
-sudo rm -rf cmigemo
+# global rc settings
+ln -s ~/$DOTFILES_DIR/.globalrc ~/.globalrc

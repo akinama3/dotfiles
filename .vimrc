@@ -26,7 +26,6 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
@@ -120,9 +119,12 @@ set ambiwidth=double
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -vを走らせる
-autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -v /mnt/ramdisk >& /dev/null &"
+autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -q /mnt/ramdisk >& /dev/null &"
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 2052160 &"
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 542675 &"
+
+" Rails用(プロジェクトができたら追加する)
+autocmd BufWritePost ~/services/rails/social/**/* silent execute "!cd ~/services/rails/social; gtags -q /mnt/ramdisk >& /dev/null &"
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
