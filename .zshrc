@@ -78,9 +78,6 @@ esac
 alias vi=vim
 alias r=rails
 
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-
 # 大文字小文字を区別しない補完設定
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 

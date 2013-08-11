@@ -48,9 +48,11 @@ NeoBundle 'vim-scripts/Align'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'ujihisa/unite-locate'
+NeoBundle "h1mesuke/unite-outline"
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'jktgr/vim-json'
 NeoBundle 'jktgr/vim-php-ethna-backend.vim'
+NeoBundle 'jktgr/phpcomplete.vim'
 NeoBundle 'jktgr/smarty.vim'
 NeoBundle 'jktgr/phpfolding.vim'
 NeoBundle 'hk4nsuke/unite-gtags'
@@ -118,7 +120,7 @@ set ambiwidth=double
 " バッファを開いた時に、カレントディレクトリを自動で移動
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
-" バッファを保存した時にgtags -vを走らせる
+" バッファを保存した時にgtags -qを走らせる
 autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -q /mnt/ramdisk >& /dev/null &"
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 2052160 &"
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 542675 &"
@@ -145,7 +147,12 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Use Vimproc
+let g:neocomplete#use_vimproc = 1
+" Lock Buffer Name Pattern
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Enable Prefetch
+let g:neocomplete#enable_prefetch = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -232,8 +239,13 @@ let g:Powerline_symbols = 'fancy'
 let g:unite_enable_start_insert=1
 let g:unite_source_rec_min_cache_files=100
 let g:unite_source_rec_max_cache_files=100000
-let g:unite_source_file_mru_limit=2000
+let g:unite_source_file_mru_limit=10000
 let g:unite_enable_ignore_case=1
+" Unite Grep the silver searcher
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
 
 " バッファ一覧
 noremap <C-U><C-B> :Unite buffer<CR>
@@ -247,6 +259,8 @@ noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 noremap <C-U><C-U> :lcd /var/www/1<CR>:Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
 noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
+" 再帰的にプロジェクトディレクトリを更新（ドリ）
+noremap <C-U><C-D> :Unite file_rec:/var/www/dig<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -293,9 +307,7 @@ let g:vdebug_options = {
 " -----------------------------------------------------------------------------
 "  uniteの色
 " -----------------------------------------------------------------------------
-highlight Pmenu ctermbg=4
-highlight PmenuSel ctermbg=250 ctermfg=0
-highlight PMenuSbar ctermbg=4
+highlight PmenuSel ctermbg=13 ctermfg=7
 
 " -----------------------------------------------------------------------------
 "  php-doc
@@ -303,7 +315,7 @@ highlight PMenuSbar ctermbg=4
 autocmd FileType php inoremap <C-@> <ESC>:call PhpDocSingle()<CR>i
 autocmd FileType php nnoremap <C-@> :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <C-@> :call PhpDocRange()<CR>
-let g:pdv_cfg_Type = "mixed"
+let g:pdv_cfg_Type = "int"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Copyright = "GREE, Inc."
@@ -384,3 +396,8 @@ function! PearErrorSnipet()
     exe "norm! o" . l:text
 endfunction
 noremap <silent> <space>p :call PearErrorSnipet()<CR>
+
+" -----------------------------------------------------------------------------
+"  Syntastic
+" -----------------------------------------------------------------------------
+let g:syntastic_javascript_checkers = ['jshint']
