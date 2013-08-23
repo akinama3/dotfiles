@@ -93,5 +93,8 @@ eval "$(rbenv init -)"
 # ctags for GNU Global
 export GTAGSLABEL=exuberant-ctags
 
+# Gist
+export GITHUB_URL=https://git.gree-dev.net/
+
 # For Tmux PowerLine
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

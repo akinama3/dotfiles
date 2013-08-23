@@ -31,7 +31,7 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/gtags.vim'
@@ -56,6 +56,8 @@ NeoBundle 'jktgr/phpcomplete.vim'
 NeoBundle 'jktgr/smarty.vim'
 NeoBundle 'jktgr/phpfolding.vim'
 NeoBundle 'hk4nsuke/unite-gtags'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -224,13 +226,20 @@ if has('conceal')
 endif
 
 " -----------------------------------------------------------------------------
-" vim-powerline
+" vim-airline
 " -----------------------------------------------------------------------------
 " 256色モード(iTerm2+PowerLineの表示には必要)
 set t_Co=256
 
 " かっこいいバー
-let g:Powerline_symbols = 'fancy'
+let g:airline_theme = 'light'
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = "⮃"
+let g:airline#extension#branch#symbol = '⭠'
+let g:airline_detect_whitespace = 0
+let g:airline_theme = 'dark'
 
 " -----------------------------------------------------------------------------
 "  unite.vim
@@ -257,6 +266,10 @@ noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 noremap <C-U><C-U> :lcd /var/www/1<CR>:Unite buffer file_mru<CR>
+" ファイルとバッファ(右開き)
+noremap <C-U><C-R> :lcd /var/www/1<CR>:Unite -default-action=right buffer file_mru<CR>
+" ファイルとバッファ(右開き)
+noremap <C-U><C-L> :lcd /var/www/1<CR>:Unite -default-action=left buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
 noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
 " 再帰的にプロジェクトディレクトリを更新（ドリ）
@@ -274,22 +287,22 @@ call unite#custom_source(
 "  vim-ref
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
-nnoremap <silent> <space>ref :Ref phpmanual 
+nnoremap <silent> <space>ref :Unite ref/phpmanual<CR>
 
 " -----------------------------------------------------------------------------
 "  unite-gtags.vim
 " -----------------------------------------------------------------------------
 " grep設定用
-nmap <C-g><C-g> :Unite gtags/grep<CR>
+nmap <C-G><C-G> :Unite gtags/grep<CR>
 " 使用箇所-定義箇所を移動
-nmap <C-g><C-j> :Unite gtags/def<CR>
+nmap <C-G><C-J> :Unite gtags/def<CR>
 " 定義箇所-使用箇所を移動
-nmap <C-g><C-k> :Unite gtags/ref<CR>
+nmap <C-G><C-K> :Unite gtags/ref<CR>
 
 " -----------------------------------------------------------------------------
 "  unite-locate.vim
 " -----------------------------------------------------------------------------
-noremap <C-U><C-L> :Unite locate<CR>
+noremap <silent> <space>ul :Unite locate<CR>
 
 " -----------------------------------------------------------------------------
 "  Clipboard
@@ -361,7 +374,7 @@ nnoremap <silent> <space>i  :call SmartyJump()<CR>
 " -----------------------------------------------------------------------------
 "  Unite Rails
 " -----------------------------------------------------------------------------
-nnoremap <C-u><C-r> :Unite rails/
+nnoremap <silent> <space>ur :Unite rails/
 nnoremap <silent> <space>rc :Unite rails/controller<CR>
 nnoremap <silent> <space>rm :Unite rails/model<CR>
 nnoremap <silent> <space>rv :Unite rails/view<CR>
@@ -401,3 +414,10 @@ noremap <silent> <space>p :call PearErrorSnipet()<CR>
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
+
+
+" -----------------------------------------------------------------------------
+"  Gist.vim
+" -----------------------------------------------------------------------------
+let g:github_user = 'jun.katagiri'
+let g:github_api_url = 'http://git.gree-dev.net/api/v3'
