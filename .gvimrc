@@ -5,4 +5,5 @@ set lines=35
 set columns=100
 set guioptions-=T  " ツールバー隠す
 set background=dark
+set cmdheight=1
 colorscheme molokai
