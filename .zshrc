@@ -50,8 +50,8 @@ setopt prompt_subst
 autoload zed
 
 # User specific environment and startup programs
-PATH=$HOME/.rbenv/bin:/usr/local/php5/bin:/usr/local/ethnam/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin
-LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+PATH=$HOME/.rbenv/bin:/usr/local/php5/bin:/usr/local/ethnam/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin:/opt/mysql/server-5.6/bin
+LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/opt/mysql/server-5.6/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 export LD_LIBRARY_PATH
@@ -68,7 +68,7 @@ case "$OSTYPE" in
   linux*)
     alias ls="ls --color"
     alias zeta="cd /var/www/1"
-    alias mysql="LANG=ja_JP.eucJP mysql"
+    # alias mysql="LANG=ja_JP.eucJP mysql"
     export LANG="en_US.UTF-8"
     export LANGUAGE="en_US.UTF-8"
     export LC_ALL="en_US.UTF-8"

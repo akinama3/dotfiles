@@ -58,6 +58,7 @@ NeoBundle 'jktgr/phpfolding.vim'
 NeoBundle 'hk4nsuke/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'evanmiller/nginx-vim-syntax'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -128,7 +129,8 @@ autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zet
 autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 542675 &"
 
 " Rails用(プロジェクトができたら追加する)
-autocmd BufWritePost ~/services/rails/social/**/* silent execute "!cd ~/services/rails/social; gtags -q /mnt/ramdisk >& /dev/null &"
+autocmd BufWritePost ~/services/rails/olympic_countdown/**/* silent execute "!cd ~/services/rails/olympic_countdown; gtags -q /mnt/ramdisk >& /dev/null &"
+autocmd BufWritePost ~/services/rails/game1/**/*             silent execute "!cd ~/services/rails/game1;             gtags -q /mnt/ramdisk >& /dev/null &"
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -265,15 +267,9 @@ noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 " レジスタ一覧
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
-noremap <C-U><C-U> :lcd /var/www/1<CR>:Unite buffer file_mru<CR>
-" ファイルとバッファ(右開き)
-noremap <C-U><C-R> :lcd /var/www/1<CR>:Unite -default-action=right buffer file_mru<CR>
-" ファイルとバッファ(右開き)
-noremap <C-U><C-L> :lcd /var/www/1<CR>:Unite -default-action=left buffer file_mru<CR>
+noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
-noremap <C-U><C-A> :Unite file_rec:/var/www/1<CR>
-" 再帰的にプロジェクトディレクトリを更新（ドリ）
-noremap <C-U><C-D> :Unite file_rec:/var/www/dig<CR>
+noremap <C-U><C-A> :Unite file_rec:~/services/<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
