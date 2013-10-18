@@ -124,13 +124,9 @@ set ambiwidth=double
 autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -qを走らせる
-autocmd BufWritePost /var/www/1/**/* silent execute "!cd /var/www/1; gtags -q /mnt/ramdisk >& /dev/null &"
-autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 2052160 &"
-autocmd BufWritePost /var/www/1/**/* silent execute "!php /var/www/1/Service/Zeta/test/clear_user_cache.php --user_id 542675 &"
-
-" Rails用(プロジェクトができたら追加する)
-autocmd BufWritePost ~/services/rails/olympic_countdown/**/* silent execute "!cd ~/services/rails/olympic_countdown; gtags -q /mnt/ramdisk >& /dev/null &"
-autocmd BufWritePost ~/services/rails/game1/**/*             silent execute "!cd ~/services/rails/game1;             gtags -q /mnt/ramdisk >& /dev/null &"
+" 環境に合わせてsourceするようにする(リポジトリには含めない)
+" autocmd BufWritePost /var/www/1/**/* silent execute '!cd /var/www/1; gtags -q /mnt/ramdisk >& /dev/null &'
+source ~/.vimrc.local
 
 " -----------------------------------------------------------------------------
 "  バッファ操作 
@@ -277,7 +273,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 call unite#custom_source(
             \ 'file_rec', 
             \ 'ignore_pattern',
-            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
 
 " -----------------------------------------------------------------------------
 "  vim-ref
@@ -374,6 +370,8 @@ nnoremap <silent> <space>ur :Unite rails/
 nnoremap <silent> <space>rc :Unite rails/controller<CR>
 nnoremap <silent> <space>rm :Unite rails/model<CR>
 nnoremap <silent> <space>rv :Unite rails/view<CR>
+nnoremap <silent> <space>rr :Unite rails/route<CR>
+nnoremap <silent> <space>rd :Unite rails/db<CR>
 
 " -----------------------------------------------------------------------------
 "  Vim Ethna Switch & Ethna Backend Switch
@@ -410,10 +408,3 @@ noremap <silent> <space>p :call PearErrorSnipet()<CR>
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
-
-
-" -----------------------------------------------------------------------------
-"  Gist.vim
-" -----------------------------------------------------------------------------
-let g:github_user = 'jun.katagiri'
-let g:github_api_url = 'http://git.gree-dev.net/api/v3'

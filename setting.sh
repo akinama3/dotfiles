@@ -14,6 +14,17 @@ if [ -e ~/.vimrc ]; then
 fi
 ln -s ~/$DOTFILES_DIR/.vimrc ~/.vimrc
 
+# gvimrc
+if [ -e ~/.gvimrc ]; then
+  rm -f ~/.gvimrc
+fi
+ln -s ~/$DOTFILES_DIR/.gvimrc ~/.gvimrc
+
+# vimrc.local 環境依存のvimrcファイル(gtagsとか)
+if [ ! -e ~/.vimrc.local ]; then
+  touch ~/.vimrc.local
+fi
+
 # vim directory
 if [ -d ~/.vim ]; then
   rm -rf ~/.vim
