@@ -46,7 +46,6 @@ setopt nobeep
 setopt transient_rprompt
 setopt prompt_subst
 
-
 autoload zed
 
 # User specific environment and startup programs
@@ -95,6 +94,9 @@ export GTAGSLABEL=exuberant-ctags
 
 # Gist
 export GITHUB_URL=https://git.gree-dev.net/
+
+# Default Editor
+export EDITOR=/usr/local/bin/vim
 
 # For Tmux PowerLine
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
