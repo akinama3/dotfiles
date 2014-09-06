@@ -49,7 +49,7 @@ setopt prompt_subst
 autoload zed
 
 # User specific environment and startup programs
-PATH=$HOME/.rbenv/bin:/usr/local/php5/bin:/usr/local/ethnam/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/gree/common/php/bin:/var/www/1/vendor/bin:/opt/mysql/server-5.6/bin
+PATH=/opt/chefdk/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/local/php5/bin:/usr/local/ethnam:/opt/mysql/server-5.6/bin
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/opt/mysql/server-5.6/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 

@@ -26,6 +26,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
@@ -91,9 +92,9 @@ set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 
 " 基本のインデント設定(各拡張子毎の設定は別途)
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 " バックアップファイル/スワップファイルを作成しない
 set nobackup
@@ -120,9 +121,6 @@ set backspace=indent,eol,start
 
 " 日本語のズレを無くす
 set ambiwidth=double
-
-" バッファを開いた時に、カレントディレクトリを自動で移動
-autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -qを走らせる
 " 環境に合わせてsourceするようにする(リポジトリには含めない)
@@ -192,6 +190,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable php completion.
@@ -283,6 +282,11 @@ call unite#custom_source(
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
 nnoremap <silent> <space>ref :Unite ref/phpmanual<CR>
+
+" Ruby
+let g:ref_use_vimproc=1
+let g:ref_refe_version=2
+let g:ref_refe_encoding='utf-8'
 
 " -----------------------------------------------------------------------------
 "  unite-gtags.vim
