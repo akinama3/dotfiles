@@ -28,7 +28,6 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'vim-ruby/vim-ruby'
@@ -61,6 +60,9 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'evanmiller/nginx-vim-syntax'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'gre/play2vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'tpope/vim-rake'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -121,6 +123,9 @@ set backspace=indent,eol,start
 
 " 日本語のズレを無くす
 set ambiwidth=double
+
+" バッファを開いた時に、カレントディレクトリを自動で移動
+" autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
 " バッファを保存した時にgtags -qを走らせる
 " 環境に合わせてsourceするようにする(リポジトリには含めない)
@@ -257,7 +262,7 @@ let g:unite_source_grep_max_candidates = 200
 " バッファ一覧
 noremap <C-U><C-B> :Unite buffer<CR>
 " ファイル一覧
-noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
+noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file file/new<CR>
 " ファイル一覧(新規)
 noremap <C-U><C-N> :UniteWithBufferDir -buffer-name=files file/new<CR>
 " レジスタ一覧
@@ -312,6 +317,7 @@ set clipboard=unnamed,autoselect
 "  vdebug
 " -----------------------------------------------------------------------------
 let g:vdebug_options = {
+\    "port" : 9001,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \}
@@ -379,6 +385,9 @@ nnoremap <silent> <space>rm :Unite rails/model<CR>
 nnoremap <silent> <space>rv :Unite rails/view<CR>
 nnoremap <silent> <space>rr :Unite rails/route<CR>
 nnoremap <silent> <space>rd :Unite rails/db<CR>
+nnoremap <silent> <space>rj :Unite rails/javascript<CR>
+nnoremap <silent> <space>rs :Unite rails/stylesheet<CR>
+nnoremap <silent> <space>rh :Unite rails/helper<CR>
 
 " -----------------------------------------------------------------------------
 "  Vim Ethna Switch & Ethna Backend Switch
