@@ -50,11 +50,11 @@ NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle "h1mesuke/unite-outline"
 NeoBundle 'mikehaertl/pdv-standalone'
-NeoBundle 'jktgr/vim-json'
-NeoBundle 'jktgr/vim-php-ethna-backend.vim'
-NeoBundle 'jktgr/phpcomplete.vim'
-NeoBundle 'jktgr/smarty.vim'
-NeoBundle 'jktgr/phpfolding.vim'
+NeoBundle 'akinama/vim-json'
+NeoBundle 'akinama/vim-php-ethna-backend.vim'
+NeoBundle 'akinama/phpcomplete.vim'
+NeoBundle 'akinama/smarty.vim'
+NeoBundle 'akinama/phpfolding.vim'
 NeoBundle 'hk4nsuke/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
@@ -320,6 +320,7 @@ let g:vdebug_options = {
 \    "port" : 9001,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
+\    "path_maps" : {'/usr/share/nginx/html' : '/Users/katagiri/Vagrant/trusty64/workspace/docroot'}
 \}
 
 " -----------------------------------------------------------------------------

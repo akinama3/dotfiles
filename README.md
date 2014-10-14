@@ -5,7 +5,7 @@ You can use the following script to install various setting files.
 ### 1. Cloning Repository
 
 ```
-% git clone https://github.com/jktgr/dotfiles.git .dotfiles
+% git clone https://github.com/akinama/dotfiles.git .dotfiles
 ```
 
 ### 2. Git Submodule Update NeoBundle and Make Symbolic Links
