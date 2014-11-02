@@ -26,7 +26,9 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle "Shougo/unite-outline"
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-scripts/ruby-matchit'
@@ -48,7 +50,6 @@ NeoBundle 'vim-scripts/Align'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'ujihisa/unite-locate'
-NeoBundle "h1mesuke/unite-outline"
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'akinama/vim-json'
 NeoBundle 'akinama/vim-php-ethna-backend.vim'
@@ -63,6 +64,17 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'gre/play2vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-rake'
+
+" C# OmniComplete
+NeoBundleLazy 'nosami/Omnisharp', {
+      \  'autoload': {'filetypes': ['cs']},
+      \  'build': {
+      \    'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+      \    'mac': 'xbuild server/OmniSharp.sln',
+      \    'unix': 'xbuild server/OmniSharp.sln',
+      \  }
+      \}
+
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -197,15 +209,14 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 " Enable php completion.
 " if !exists('g:neocomplete#sources#omni#input_patterns')
 "     let g:neocomplete#sources#omni#input_patterns = {}
 " endif
-" let g:neocomplete#sources#omni#input_patterns.php = 
-"             \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+" let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 " inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
-
 
 " -----------------------------------------------------------------------------
 "  neosnippet
@@ -270,7 +281,7 @@ noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
-noremap <C-U><C-A> :Unite file_rec:~/services/<CR>
+noremap <C-U><C-A> :Unite file_rec:.<CR>
 " アウトライン
 noremap <C-U><C-O> :Unite -vertical -no-quit outline<CR>
 " ESCキーを2回押すと終了する
@@ -320,7 +331,8 @@ let g:vdebug_options = {
 \    "port" : 9001,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
-\    "path_maps" : {'/usr/share/nginx/html' : '/Users/katagiri/Vagrant/trusty64/workspace/docroot'}
+\    'server': '0.0.0.0',
+\    "path_maps" : {'/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa/source'}
 \}
 
 " -----------------------------------------------------------------------------
@@ -391,16 +403,6 @@ nnoremap <silent> <space>rs :Unite rails/stylesheet<CR>
 nnoremap <silent> <space>rh :Unite rails/helper<CR>
 
 " -----------------------------------------------------------------------------
-"  Vim Ethna Switch & Ethna Backend Switch
-" -----------------------------------------------------------------------------
-nnoremap <silent> <space>ea :ETA<CR>
-nnoremap <silent> <space>et :ETT<CR>
-nnoremap <silent> <space>ev :ETV<CR>
-nnoremap <silent> <space>bg :EBGenericDao<CR>
-nnoremap <silent> <space>bt :EBTdGateway<CR>
-nnoremap <silent> <space>bm :EBModule<CR>
-
-" -----------------------------------------------------------------------------
 "  PHP Folding
 " -----------------------------------------------------------------------------
 augroup vimrc
@@ -425,3 +427,27 @@ noremap <silent> <space>p :call PearErrorSnipet()<CR>
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
+
+" -----------------------------------------------------------------------------
+"  OmniSharp
+" -----------------------------------------------------------------------------
+let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+
+augroup omnisharp_commands
+  autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+  autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+
+  autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+  autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+  autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+  autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+  autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+  autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+  autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+  autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+  autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+augroup END
+
+set updatetime=500
+set cmdheight=2
