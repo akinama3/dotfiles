@@ -24,6 +24,15 @@ precmd () {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
+# cdr
+autoload -Uz add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# zmv
+autoload -Uz zmv
+alias zmv='noglob zmv -W'
+
 # history search
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
