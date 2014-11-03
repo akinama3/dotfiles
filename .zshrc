@@ -31,7 +31,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # zmv
 autoload -Uz zmv
-alias zmv='noglob zmv -W'
 
 # history search
 autoload history-search-end
@@ -105,11 +104,6 @@ LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/opt/mysql/server-5.6/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 SCALA_HOME=/usr/local/scala
 
-export LD_LIBRARY_PATH
-export PKG_CONFIG_PATH
-export PATH
-export SCALA_HOME
-
 # OSのタイプによって切り分け
 case "$OSTYPE" in
   darwin*)
@@ -126,6 +120,12 @@ case "$OSTYPE" in
     export LC_ALL="ja_JP.UTF-8"
     ;;
 esac
+
+# Environment variables
+export LD_LIBRARY_PATH
+export PKG_CONFIG_PATH
+export PATH
+export SCALA_HOME
 
 alias vi=vim
 alias r=rails
