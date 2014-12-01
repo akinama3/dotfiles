@@ -43,19 +43,16 @@ NeoBundle 'vim-scripts/MultipleSearch'
 NeoBundle 'surround.vim'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'rgarver/Kwbd.vim'
-NeoBundle 'taku-o/vim-ethna-switch'
-NeoBundle 'watanabe0621/aoi-jump.vim'
-NeoBundle 'watanabe0621/SmartyJump'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'akinama/vim-json'
-NeoBundle 'akinama/vim-php-ethna-backend.vim'
 NeoBundle 'akinama/phpcomplete.vim'
 NeoBundle 'akinama/smarty.vim'
 NeoBundle 'akinama/phpfolding.vim'
+NeoBundle 'akinama/unite-ethna'
 NeoBundle 'hk4nsuke/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
@@ -66,14 +63,14 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-rake'
 
 " C# OmniComplete
-NeoBundleLazy 'nosami/Omnisharp', {
-      \  'autoload': {'filetypes': ['cs']},
-      \  'build': {
-      \    'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
-      \    'mac': 'xbuild server/OmniSharp.sln',
-      \    'unix': 'xbuild server/OmniSharp.sln',
-      \  }
-      \}
+" NeoBundleLazy 'nosami/Omnisharp', {
+"       \  'autoload': {'filetypes': ['cs']},
+"       \  'build': {
+"       \    'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+"       \    'mac': 'xbuild server/OmniSharp.sln',
+"       \    'unix': 'xbuild server/OmniSharp.sln',
+"       \  }
+"       \}
 
 
 " ファイルタイプの自動検出
@@ -332,13 +329,16 @@ let g:vdebug_options = {
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
-\    "path_maps" : {'/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa/source'}
+\    "path_maps" : {
+\        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-jp/source',
+\        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
+\        }
 \}
 
 " -----------------------------------------------------------------------------
 "  uniteの色
 " -----------------------------------------------------------------------------
-highlight PmenuSel ctermbg=13 ctermfg=7
+highlight PmenuSel ctermbg=0 ctermfg=208
 
 " -----------------------------------------------------------------------------
 "  php-doc
@@ -346,11 +346,11 @@ highlight PmenuSel ctermbg=13 ctermfg=7
 autocmd FileType php inoremap <C-@> <ESC>:call PhpDocSingle()<CR>i
 autocmd FileType php nnoremap <C-@> :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <C-@> :call PhpDocRange()<CR>
-let g:pdv_cfg_Type = "int"
+let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Copyright = "GREE, Inc."
-let g:pdv_cfg_Author = ""
+let g:pdv_cfg_Copyright = ""
+let g:pdv_cfg_Author = "Jun Katagiri"
 let g:pdv_cfg_License = ""
 
 " After phpDoc standard
@@ -373,23 +373,6 @@ nnoremap + :SearchReset<CR>
 let g:MultipleSearchMaxColors = 4
 
 " -----------------------------------------------------------------------------
-"  Aoi Jump
-" -----------------------------------------------------------------------------
-" grep command setting
-set grepprg=grep\ -nH
-
-" aoi grep
-nnoremap <silent> <space>ag :call AoiGrep()<CR>
-" jump to aoi module
-nnoremap <silent> <space>am :call AoiModuleJump()<CR>
-" jump to aoi processor
-nnoremap <silent> <space>ap :call AoiProcessorJump()<CR>
-" jump to aoi client
-nnoremap <silent> <space>ac :call AoiClientJump()<CR>
-" jump to smarty include file
-nnoremap <silent> <space>i  :call SmartyJump()<CR>
-
-" -----------------------------------------------------------------------------
 "  Unite Rails
 " -----------------------------------------------------------------------------
 nnoremap <silent> <space>ur :Unite rails/
@@ -403,6 +386,20 @@ nnoremap <silent> <space>rs :Unite rails/stylesheet<CR>
 nnoremap <silent> <space>rh :Unite rails/helper<CR>
 
 " -----------------------------------------------------------------------------
+"  Unite ethna
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>em  :Unite ethna/module<CR>
+nnoremap <silent> <space>ep  :Unite ethna/processor<CR>
+nnoremap <silent> <space>eca :Unite ethna/cascade<CR>
+nnoremap <silent> <space>ed  :Unite ethna/dataformat<CR>
+nnoremap <silent> <space>eg  :Unite ethna/gateway<CR>
+nnoremap <silent> <space>es  :Unite ethna/shardselector<CR>
+nnoremap <silent> <space>ea  :Unite ethna/action<CR>
+nnoremap <silent> <space>et  :Unite ethna/template<CR>
+nnoremap <silent> <space>eco :Unite ethna/config<CR>
+
+
+" -----------------------------------------------------------------------------
 "  PHP Folding
 " -----------------------------------------------------------------------------
 augroup vimrc
@@ -410,44 +407,6 @@ augroup vimrc
 augroup END
 
 " -----------------------------------------------------------------------------
-"  PEAR Error check 補完君
-" -----------------------------------------------------------------------------
-function! PearErrorSnipet()
-    let l:cursor_word  = expand("<cword>")
-    let l:text = printf("if (PEAR::isError($%s)) {", l:cursor_word)
-    exe "norm! o" . l:text
-    let l:text = printf("return $%s;", l:cursor_word)
-    exe "norm! o" . l:text
-    let l:text = "}"
-    exe "norm! o" . l:text
-endfunction
-noremap <silent> <space>p :call PearErrorSnipet()<CR>
-
-" -----------------------------------------------------------------------------
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
-
-" -----------------------------------------------------------------------------
-"  OmniSharp
-" -----------------------------------------------------------------------------
-let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-
-augroup omnisharp_commands
-  autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-  autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-
-  autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-  autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-  autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-  autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
-  autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
-  autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-  autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
-  autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-  autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
-augroup END
-
-set updatetime=500
-set cmdheight=2

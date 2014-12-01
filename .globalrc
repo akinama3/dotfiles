@@ -59,6 +59,7 @@ user-custom|User custom plugin parser:\
 #
 exuberant-ctags|plugin-example|setting to use Exuberant Ctags plug-in parser:\
 	:tc=common:\
+	:tc=builtin-parser:\
 	:langmap=Asm\:.sosm.ASM.s.S:\
 	:langmap=Asp\:.sosp.sosa:\
 	:langmap=Awk\:.sowk.gawk.mawk:\
