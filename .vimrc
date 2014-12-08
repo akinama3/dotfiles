@@ -118,7 +118,7 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " .vim ディレクトリの設定
 let $DOTVIM = expand('~/.vim')
 
-" コマンドライン補完をshellと同一にする 
+" コマンドライン補完をshellと同一にする
 set wildmode=list:longest
 
 " 検索をインクリメンタルサーチにする
@@ -142,7 +142,7 @@ set ambiwidth=double
 source ~/.vimrc.local
 
 " -----------------------------------------------------------------------------
-"  バッファ操作 
+"  バッファ操作
 " -----------------------------------------------------------------------------
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
@@ -285,7 +285,7 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 call unite#custom_source(
-            \ 'file_rec', 
+            \ 'file_rec',
             \ 'ignore_pattern',
             \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
 
@@ -346,7 +346,7 @@ autocmd FileType php inoremap <C-@> <ESC>:call PhpDocSingle()<CR>i
 autocmd FileType php nnoremap <C-@> :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <C-@> :call PhpDocRange()<CR>
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = ""
+let g:pdv_cfg_Package = "Eden"
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Copyright = ""
 let g:pdv_cfg_Author = "Jun Katagiri"
@@ -420,7 +420,16 @@ nnoremap <silent> <space>i :call SmartyJump()<CR>
 " -----------------------------------------------------------------------------
 "  NERDTree
 " -----------------------------------------------------------------------------
-nnoremap <silent> <space>t :NERDTreeToggle<CR>
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 30
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <space>tt :NERDTreeToggle<CR>
+nnoremap <silent> <space>tf :NERDTreeFind<CR>
 
 " -----------------------------------------------------------------------------
 "  Git
