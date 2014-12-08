@@ -24,6 +24,14 @@ endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -37,6 +45,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/molokai'
 NeoBundle 'vim-scripts/MultipleSearch'
@@ -53,6 +62,7 @@ NeoBundle 'akinama/phpcomplete.vim'
 NeoBundle 'akinama/smarty.vim'
 NeoBundle 'akinama/phpfolding.vim'
 NeoBundle 'akinama/unite-ethna'
+NeoBundle 'akinama/SmartyJump'
 NeoBundle 'hk4nsuke/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
@@ -61,17 +71,7 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'gre/play2vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-rake'
-
-" C# OmniComplete
-" NeoBundleLazy 'nosami/Omnisharp', {
-"       \  'autoload': {'filetypes': ['cs']},
-"       \  'build': {
-"       \    'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
-"       \    'mac': 'xbuild server/OmniSharp.sln',
-"       \    'unix': 'xbuild server/OmniSharp.sln',
-"       \  }
-"       \}
-
+NeoBundle 'airblade/vim-gitgutter'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -243,7 +243,6 @@ endif
 set t_Co=256
 
 " かっこいいバー
-let g:airline_theme = 'light'
 let g:airline_left_sep = '⮀'
 let g:airline_left_alt_sep = '⮁'
 let g:airline_right_sep = '⮂'
@@ -388,7 +387,7 @@ nnoremap <silent> <space>rh :Unite rails/helper<CR>
 " -----------------------------------------------------------------------------
 "  Unite ethna
 " -----------------------------------------------------------------------------
-nnoremap <silent> <space>em  :Unite ethna/module<CR>
+nnoremap <silent> <space>emo :Unite ethna/module<CR>
 nnoremap <silent> <space>ep  :Unite ethna/processor<CR>
 nnoremap <silent> <space>eca :Unite ethna/cascade<CR>
 nnoremap <silent> <space>ed  :Unite ethna/dataformat<CR>
@@ -397,7 +396,9 @@ nnoremap <silent> <space>es  :Unite ethna/shardselector<CR>
 nnoremap <silent> <space>ea  :Unite ethna/action<CR>
 nnoremap <silent> <space>et  :Unite ethna/template<CR>
 nnoremap <silent> <space>eco :Unite ethna/config<CR>
-
+nnoremap <silent> <space>ema :Unite ethna/master<CR>
+nnoremap <silent> <space>eh  :Unite ethna/hook<CR>
+nnoremap <silent> <space>ecl :Unite ethna/cli<CR>
 
 " -----------------------------------------------------------------------------
 "  PHP Folding
@@ -410,3 +411,22 @@ augroup END
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
+
+" -----------------------------------------------------------------------------
+"  SmartyJump
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>i :call SmartyJump()<CR>
+
+" -----------------------------------------------------------------------------
+"  NERDTree
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>t :NERDTreeToggle<CR>
+
+" -----------------------------------------------------------------------------
+"  Git
+" -----------------------------------------------------------------------------
+noremap <silent> <space>gs :Gstatus<CR>
+noremap <silent> <space>gb :Gblame<CR>
+noremap <silent> <space>gd :Gvdiff<CR>
+noremap <silent> <space>gr :Gremove<CR>
+noremap <silent> <space>ggh :GitGutterLineHighlightsToggle<CR>
