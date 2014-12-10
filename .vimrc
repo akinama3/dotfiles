@@ -59,7 +59,7 @@ NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'mikehaertl/pdv-standalone'
 NeoBundle 'akinama/vim-json'
 NeoBundle 'akinama/phpcomplete.vim'
-NeoBundle 'akinama/smarty.vim'
+NeoBundle 'blueyed/smarty.vim'
 NeoBundle 'akinama/phpfolding.vim'
 NeoBundle 'akinama/unite-ethna'
 NeoBundle 'akinama/SmartyJump'
@@ -72,6 +72,10 @@ NeoBundle 'gre/play2vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'vim-scripts/jQuery'
+NeoBundle 'honza/vim-snippets'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -219,9 +223,9 @@ autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 "  neosnippet
 " -----------------------------------------------------------------------------
 " キーマップの設定
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k>  <Plug>(neosnippet_expand_or_jump)
+smap <C-k>  <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>  <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -428,8 +432,8 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 30
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <space>tt :NERDTreeToggle<CR>
-nnoremap <silent> <space>tf :NERDTreeFind<CR>
+nnoremap <silent> <space>t :NERDTreeToggle<CR>
+nnoremap <silent> <space>f :NERDTreeFind<CR>
 
 " -----------------------------------------------------------------------------
 "  Git
@@ -439,3 +443,9 @@ noremap <silent> <space>gb :Gblame<CR>
 noremap <silent> <space>gd :Gvdiff<CR>
 noremap <silent> <space>gr :Gremove<CR>
 noremap <silent> <space>ggh :GitGutterLineHighlightsToggle<CR>
+
+" -----------------------------------------------------------------------------
+"  Align
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>a> :Align =><CR>
+nnoremap <silent> <space>a= :Align =<CR>
