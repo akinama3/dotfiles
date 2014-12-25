@@ -46,7 +46,7 @@ gtags:\
 	:tc=common:\
 	:tc=builtin-parser:
 builtin-parser:\
-	:langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml:
+  :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml:
 #
 # skeleton for user's custom parser.
 #
@@ -143,6 +143,7 @@ exuberant-ctags|plugin-example|setting to use Exuberant Ctags plug-in parser:\
 #
 pygments-parser|Pygments plug-in parser:\
 	:tc=common:\
+	:tc=builtin-parser:\
 	:langmap=ABAP\:.sobap:\
 	:langmap=ANTLR\:.G.g:\
 	:langmap=ActionScript3\:.sos:\

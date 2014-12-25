@@ -2,6 +2,10 @@
 " Language:	C#
 " Maintainer:   Aquila Deus
 "
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")

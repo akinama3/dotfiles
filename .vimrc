@@ -63,7 +63,7 @@ NeoBundle 'blueyed/smarty.vim'
 NeoBundle 'akinama/phpfolding.vim'
 NeoBundle 'akinama/unite-ethna'
 NeoBundle 'akinama/SmartyJump'
-NeoBundle 'hk4nsuke/unite-gtags'
+NeoBundle 'hewes/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'evanmiller/nginx-vim-syntax'
@@ -76,6 +76,7 @@ NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'vim-scripts/jQuery'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'vim-scripts/BufOnly.vim'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -107,9 +108,9 @@ set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 
 " 基本のインデント設定(各拡張子毎の設定は別途)
 set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 " バックアップファイル/スワップファイルを作成しない
 set nobackup
@@ -333,7 +334,7 @@ let g:vdebug_options = {
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
 \    "path_maps" : {
-\        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-jp/source',
+\        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
 \        }
 \}
@@ -396,13 +397,14 @@ nnoremap <silent> <space>ep  :Unite ethna/processor<CR>
 nnoremap <silent> <space>eca :Unite ethna/cascade<CR>
 nnoremap <silent> <space>ed  :Unite ethna/dataformat<CR>
 nnoremap <silent> <space>eg  :Unite ethna/gateway<CR>
-nnoremap <silent> <space>es  :Unite ethna/shardselector<CR>
+nnoremap <silent> <space>ess :Unite ethna/shardselector<CR>
 nnoremap <silent> <space>ea  :Unite ethna/action<CR>
 nnoremap <silent> <space>et  :Unite ethna/template<CR>
 nnoremap <silent> <space>eco :Unite ethna/config<CR>
 nnoremap <silent> <space>ema :Unite ethna/master<CR>
 nnoremap <silent> <space>eh  :Unite ethna/hook<CR>
 nnoremap <silent> <space>ecl :Unite ethna/cli<CR>
+nnoremap <silent> <space>esr :Unite ethna/src<CR>
 
 " -----------------------------------------------------------------------------
 "  PHP Folding
@@ -415,6 +417,7 @@ augroup END
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_tidy_ignore_errors=['trimming empty', 'missing </a> before <div>', 'discarding unexpected </a>']
 
 " -----------------------------------------------------------------------------
 "  SmartyJump
@@ -449,3 +452,8 @@ noremap <silent> <space>ggh :GitGutterLineHighlightsToggle<CR>
 " -----------------------------------------------------------------------------
 nnoremap <silent> <space>a> :Align =><CR>
 nnoremap <silent> <space>a= :Align =<CR>
+
+" -----------------------------------------------------------------------------
+"  Kwbd
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>kw :Kw<CR>
