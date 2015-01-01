@@ -1,0 +1,22 @@
+snippet module
+    (function(global) {
+        "use strict;"
+    
+        // Class ------------------------------------------------
+        function Module() {
+        };
+    
+        // Header -----------------------------------------------
+        Module["prototype"]["method"] = moduleMethod; // Module#method(someArg:any):void
+    
+        // Implementation ---------------------------------------
+        function moduleMethod() {
+        }
+    
+        // Exports ----------------------------------------------
+        if ("process" in global) {
+            module["exports"] = Module;
+        }
+        global["Module"] = Module;
+    
+    })((this || 0).self || global);

@@ -77,6 +77,8 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'vim-scripts/jQuery'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'vim-scripts/BufOnly.vim'
+NeoBundle 'vim-scripts/android.vim'
+NeoBundle 'akinama/vim-ref-ri'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -298,7 +300,9 @@ call unite#custom_source(
 "  vim-ref
 " -----------------------------------------------------------------------------
 let g:ref_phpmanual_path = $DOTVIM . '/docs/phpmanual'
-nnoremap <silent> <space>ref :Unite ref/phpmanual<CR>
+nnoremap <silent> <space>refp :Unite ref/phpmanual<CR>
+nnoremap <silent> <space>refe :Unite ref/refe<CR>
+nnoremap <silent> <space>refr :Unite ref/ri<CR>
 
 " Ruby
 let g:ref_use_vimproc=1
@@ -329,7 +333,7 @@ set clipboard=unnamed,autoselect
 "  vdebug
 " -----------------------------------------------------------------------------
 let g:vdebug_options = {
-\    "port" : 9001,
+\    "port" : 9000,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
@@ -457,3 +461,8 @@ nnoremap <silent> <space>a= :Align =<CR>
 "  Kwbd
 " -----------------------------------------------------------------------------
 nnoremap <silent> <space>kw :Kw<CR>
+
+" -----------------------------------------------------------------------------
+"  Buffer Only
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>bo :Bo<CR>

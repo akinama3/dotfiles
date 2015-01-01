@@ -109,7 +109,8 @@ SCALA_HOME=/usr/local/scala
 # OSのタイプによって切り分け
 case "$OSTYPE" in
   darwin*)
-    PATH=/opt/chefdk/bin:$PATH
+    PATH=/opt/chefdk/bin:/usr/local/Cellar/gradle/bin:$PATH
+    export GRADLE_HOME=/usr/local/Cellar/gradle/2.2.1
     alias ls="ls -G"
     export LANG="ja_JP.UTF-8"
     export LANGUAGE="ja_JP.UTF-8"
