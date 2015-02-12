@@ -25,13 +25,13 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+            \ 'build' : {
+            \     'windows' : 'tools\\update-dll-mingw',
+            \     'cygwin' : 'make -f make_cygwin.mak',
+            \     'mac' : 'make -f make_mac.mak',
+            \     'unix' : 'make -f make_unix.mak',
+            \    },
+            \ }
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -39,7 +39,6 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle "Shougo/unite-outline"
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'thinca/vim-ref'
@@ -79,6 +78,19 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'vim-scripts/BufOnly.vim'
 NeoBundle 'vim-scripts/android.vim'
 NeoBundle 'akinama/vim-ref-ri'
+NeoBundle 'vim-scripts/rails.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
+NeoBundleLazy 'OmniSharp/omnisharp-vim', {
+            \   'autoload': { 'filetypes': [ 'cs' ] },
+            \   'build': {
+            \     'windows' : 'msbuild server/OmniSharp.sln',
+            \     'mac': 'xbuild server/OmniSharp.sln',
+            \     'unix': 'xbuild server/OmniSharp.sln',
+            \   }
+            \ }
+NeoBundle 'OrangeT/vim-csharp'
+NeoBundle 'tpope/vim-dispatch'
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -214,6 +226,11 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
+
 
 " Enable php completion.
 " if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -333,7 +350,7 @@ set clipboard=unnamed,autoselect
 "  vdebug
 " -----------------------------------------------------------------------------
 let g:vdebug_options = {
-\    "port" : 9000,
+\    "port" : 9001,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
@@ -422,6 +439,7 @@ augroup END
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_tidy_ignore_errors=['trimming empty', 'missing </a> before <div>', 'discarding unexpected </a>']
+let g:syntastic_html_validator_parser = 'html5'
 
 " -----------------------------------------------------------------------------
 "  SmartyJump

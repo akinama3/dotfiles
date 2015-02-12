@@ -46,7 +46,7 @@ gtags:\
 	:tc=common:\
 	:tc=builtin-parser:
 builtin-parser:\
-  :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml:
+  :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml,cs\:.cs.h.cppproj.csproj.aspx.asax.config.cscfg.csdef:
 #
 # skeleton for user's custom parser.
 #
