@@ -484,3 +484,9 @@ nnoremap <silent> <space>kw :Kw<CR>
 "  Buffer Only
 " -----------------------------------------------------------------------------
 nnoremap <silent> <space>bo :Bo<CR>
+
+" -----------------------------------------------------------------------------
+"  Omni Sharp
+" -----------------------------------------------------------------------------
+noremap <silent> <space>csf :OmniSharpCodeFormat<CR>
+noremap <silent> <space>css :OmniSharpFindSyntaxErrors<CR>
