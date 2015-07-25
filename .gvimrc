@@ -11,3 +11,4 @@ set guioptions-=L
 set background=dark
 set cmdheight=1
 colorscheme molokai
+set noundofile

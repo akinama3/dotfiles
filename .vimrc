@@ -152,6 +152,10 @@ set backspace=indent,eol,start
 " 日本語のズレを無くす
 set ambiwidth=double
 
+"タブ、空白、改行の可視化
+set list
+set listchars=tab:>\ ,trail:_
+
 " バッファを開いた時に、カレントディレクトリを自動で移動
 " autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
@@ -272,7 +276,7 @@ let g:airline_left_alt_sep = '⮁'
 let g:airline_right_sep = '⮂'
 let g:airline_right_alt_sep = "⮃"
 let g:airline#extension#branch#symbol = '⭠'
-let g:airline_detect_whitespace = 0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'dark'
 
 " -----------------------------------------------------------------------------
