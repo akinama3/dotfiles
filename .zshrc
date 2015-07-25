@@ -4,7 +4,7 @@ HISTSIZE=6000000
 SAVEHIST=6000000
 
 # prompt variables
-PROMPT="%F{208}%n%%%f "
+PROMPT="%F{104}[%m] %f%F{208}%n%%%f "
 RPROMPT="[%1(v|%F{82}%1v%f|) %~]"
 SPROMPT="correct: %R -> %r ? "
 
