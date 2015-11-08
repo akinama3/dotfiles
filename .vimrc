@@ -15,12 +15,13 @@ filetype plugin indent off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/NeoBundle/
-  call neobundle#rc(expand('~/.vim/bundle'))
 endif
 
 " -----------------------------------------------------------------------------
 " NeoBundle plugins
 " -----------------------------------------------------------------------------
+call neobundle#begin(expand('~/.vim/bundle/'))
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
@@ -92,6 +93,8 @@ NeoBundleLazy 'OmniSharp/omnisharp-vim', {
 NeoBundle 'OrangeT/vim-csharp'
 NeoBundle 'tpope/vim-dispatch'
 
+call neobundle#end()
+
 " ファイルタイプの自動検出
 filetype indent plugin on
 
@@ -155,6 +158,9 @@ set ambiwidth=double
 "タブ、空白、改行の可視化
 set list
 set listchars=tab:>\ ,trail:_
+
+"折り畳み設定
+set foldmethod=syntax
 
 " バッファを開いた時に、カレントディレクトリを自動で移動
 " autocmd BufEnter * execute ":lcd " . expand("%:p:h")
@@ -278,6 +284,11 @@ let g:airline_right_alt_sep = "⮃"
 let g:airline#extension#branch#symbol = '⭠'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'dark'
+let g:airline_section_c = '%t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = '⮀'
+let g:airline#extensions#tabline#left_alt_sep = '⮁'
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " -----------------------------------------------------------------------------
 "  unite.vim
@@ -315,7 +326,13 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 call unite#custom_source(
             \ 'file_rec',
             \ 'ignore_pattern',
-            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+
+call unite#custom_source(
+            \ 'file',
+            \ 'ignore_pattern',
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+
 
 " -----------------------------------------------------------------------------
 "  vim-ref
@@ -354,13 +371,14 @@ set clipboard=unnamed,autoselect
 "  vdebug
 " -----------------------------------------------------------------------------
 let g:vdebug_options = {
-\    "port" : 9001,
+\    "port" : 9000,
 \    "break_on_open" : 0,
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
+\        '/Users/katagiri/Workspace/Retty/retty' : '/home/d-partner39/retty',
 \        }
 \}
 
@@ -492,5 +510,7 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 "  Omni Sharp
 " -----------------------------------------------------------------------------
-noremap <silent> <space>csf :OmniSharpCodeFormat<CR>
-noremap <silent> <space>css :OmniSharpFindSyntaxErrors<CR>
+noremap <silent> <space>cf :OmniSharpCodeFormat<CR>
+noremap <silent> <space>cs :OmniSharpFindSyntaxErrors<CR>
+noremap <silent> <space>cd :OmniSharpGotoDefinition<CR>
+noremap <silent> <space>cr :OmniSharpFindUsages<CR>

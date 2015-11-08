@@ -32,50 +32,30 @@ snippet wait
 snippet sm
     SendMessage("${1:message}", ${2:null}, ${3:SendMessageOptions.DontRequireReceiver})
 snippet forl
-    foreach (${1:int} ${2:var} in ${3:list}) {
+    foreach (${1:int} ${2:var} in ${3:list})
+    {
     ${4}
-  }
+    }
 snippet ford
-    foreach (KeyValuePair<${1:int}, ${2:int}> pair in ${3:dict}) {
+    foreach (KeyValuePair<${1:int}, ${2:int}> pair in ${3:dict})
+    {
     ${4}
-  }
+    }
 snippet list
     List<${1:int}> ${2:var} = new List<$1>();
 snippet dict
     Dictionary<${1:int}, ${2:int}> ${3:var} = new Dictionary<$1, $2>();
-snippet sort
-    filtered.Sort(
-    delegate(${1:int} a, $1 b) {
-      return a.CompareTo(b);
-    }
-  );
-snippet tryget
-    ${1:int} ${2:value};
-  if (${3:dict}.TryGetValue("${4:key}", out $2)) {
-    ${5}
-  }
-
-snippet sim
-    public static int Main(string[] args) {
-    ${0}
-    return 0;
-  }
-snippet simc
-    public class Application {
-    public static int Main(string[] args) {
-      ${0}
-      return 0;
-    }
-  }
 # if condition
 snippet if
-    if (${1}) {
+    if (${1})
+    {
     ${0}
-  }
+    }
 snippet el
-    else {
+    else
+    {
     ${0}
-  }
+    }
 snippet ifs
     if (${1})
     ${0}
@@ -86,19 +66,22 @@ snippet ?
     ${1} ? ${2} : ${0}
 # do while loop
 snippet do
-    do {
+    do
+    {
     ${0}
-  } while (${1});
+    } while (${1});
 # while loop
 snippet wh
-    while (${1}) {
+    while (${1})
+    {
     ${0}
-  }
+    }
 # for loop
 snippet for
-    for (int ${1:i} = 0; $1 < ${2:count}; $1${3:++}) {
+    for (int ${1:i} = 0; $1 < ${2:count}; $1${3:++})
+    {
     ${0}
-  }
+    }
 # foreach
 snippet fore
     foreach (var ${1:entry} in ${2}) {
@@ -114,57 +97,29 @@ snippet each
   }
 # interfaces
 snippet interface
-    public interface ${1:`vim_snippets#Filename()`} {
+    public interface ${1:`vim_snippets#Filename()`}
+     {
     ${0}
-  }
+    }
 snippet if+
-    public interface ${1:`vim_snippets#Filename()`} {
+    public interface ${1:`vim_snippets#Filename()`}
+    {
     ${0}
-  }
+    }
 # class bodies
 snippet class
-    public class ${1:`vim_snippets#Filename()`} {
+    public class ${1:`vim_snippets#Filename()`}
+    {
     ${0}
-  }
-snippet cls
-    ${2:public} class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls+
-    public class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls+^
-    public static class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls&
-    internal class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls&^
-    internal static class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls|
-    protected class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
-snippet cls|%
-    protected abstract class ${1:`vim_snippets#Filename()`} {
-    ${0}
-  }
+    }
 # constructor
-snippet ctor
-    public ${1:`vim_snippets#Filename()`}() {
+snippet constructor
+    public ${1:`vim_snippets#Filename()`}()
+    {
     ${0}
-  }
+    }
 # properties - auto properties by default.
 # default type is int with layout get / set.
-snippet prop
-    ${1:public} ${2:int} ${3:} { get; set; }
-snippet p
-    ${1:public} ${2:int} ${3:} { get; set; }
 snippet p+
     public ${1:int} ${2:} { get; set; }
 snippet p+&
@@ -173,258 +128,150 @@ snippet p+|
     public ${1:int} ${2:} { get; protected set; }
 snippet p+-
     public ${1:int} ${2:} { get; private set; }
-snippet p&
-    internal ${1:int} ${2:} { get; set; }
-snippet p&|
-    internal ${1:int} ${2:} { get; protected set; }
-snippet p&-
-    internal ${1:int} ${2:} { get; private set; }
-snippet p|
-    protected ${1:int} ${2:} { get; set; }
-snippet p|-
-    protected ${1:int} ${2:} { get; private set; }
-snippet p-
-    private ${1:int} ${2:} { get; set; }
-# property - bool
-snippet pi
-    ${1:public} int ${2:} { get; set; }
-snippet pi+
-    public int ${1} { get; set; }
-snippet pi+&
-    public int ${1} { get; internal set; }
-snippet pi+|
-    public int ${1} { get; protected set; }
-snippet pi+-
-    public int ${1} { get; private set; }
-snippet pi&
-    internal int ${1} { get; set; }
-snippet pi&|
-    internal int ${1} { get; protected set; }
-snippet pi&-
-    internal int ${1} { get; private set; }
-snippet pi|
-    protected int ${1} { get; set; }
-snippet pi|-
-    protected int ${1} { get; private set; }
-snippet pi-
-    private int ${1} { get; set; }
-# property - bool
-snippet pb
-    ${1:public} bool ${2:} { get; set; }
-snippet pb+
-    public bool ${1} { get; set; }
-snippet pb+&
-    public bool ${1} { get; internal set; }
-snippet pb+|
-    public bool ${1} { get; protected set; }
-snippet pb+-
-    public bool ${1} { get; private set; }
-snippet pb&
-    internal bool ${1} { get; set; }
-snippet pb&|
-    internal bool ${1} { get; protected set; }
-snippet pb&-
-    internal bool ${1} { get; private set; }
-snippet pb|
-    protected bool ${1} { get; set; }
-snippet pb|-
-    protected bool ${1} { get; private set; }
-snippet pb-
-    private bool ${1} { get; set; }
-# property - string
-snippet ps
-    ${1:public} string ${2:} { get; set; }
-snippet ps+
-    public string ${1} { get; set; }
-snippet ps+&
-    public string ${1} { get; internal set; }
-snippet ps+|
-    public string ${1} { get; protected set; }
-snippet ps+-
-    public string ${1} { get; private set; }
-snippet ps&
-    internal string ${1} { get; set; }
-snippet ps&|
-    internal string ${1} { get; protected set; }
-snippet ps&-
-    internal string ${1} { get; private set; }
-snippet ps|
-    protected string ${1} { get; set; }
-snippet ps|-
-    protected string ${1} { get; private set; }
-snippet ps-
-    private string ${1} { get; set; }
 # members - void
 snippet m
-    ${1:public} ${2:void} ${3:}(${4:}) {
+    ${1:public} ${2:void} ${3:}(${4:})
+    {
     ${5:}
-  }
+    }
 snippet m+
-    public ${1:void} ${2:}(${3:}) {
+    public ${1:void} ${2:}(${3:})
+    {
     ${4:}
-  }
+    }
 snippet m&
-    internal ${1:void} ${2:}(${3:}) {
+    internal ${1:void} ${2:}(${3:})
+    {
     ${4:}
-  }
+    }
 snippet m|
-    protected ${1:void} ${2:}(${3:}) {
+    protected ${1:void} ${2:}(${3:})
+    {
     ${4:}
-  }
+    }
 snippet m-
-    private ${1:void} ${2:}(${3:}) {
+    private ${1:void} ${2:}(${3:})
+    {
     ${4:}
-  }
+    }
 # members - int
 snippet mi
-    ${1:public} int ${2:}(${3:}) {
+    ${1:public} int ${2:}(${3:})
+    {
     ${4:return 0;}
-  }
+    }
 snippet mi+
-    public int ${1:}(${2:}) {
+    public int ${1:}(${2:})
+    {
     ${3:return 0;}
-  }
+    }
 snippet mi&
-    internal int ${1:}(${2:}) {
+    internal int ${1:}(${2:})
+    {
     ${3:return 0;}
-  }
+    }
 snippet mi|
-    protected int ${1:}(${2:}) {
+    protected int ${1:}(${2:})
+    {
     ${3:return 0;}
-  }
+    }
 snippet mi-
-    private int ${1:}(${2:}) {
+    private int ${1:}(${2:})
+    {
     ${3:return 0;}
-  }
+    }
 # members - bool
 snippet mb
-    ${1:public} bool ${2:}(${3:}) {
+    ${1:public} bool ${2:}(${3:})
+    {
     ${4:return false;}
-  }
+    }
 snippet mb+
-    public bool ${1:}(${2:}) {
+    public bool ${1:}(${2:})
+    {
     ${3:return false;}
-  }
+    }
 snippet mb&
-    internal bool ${1:}(${2:}) {
+    internal bool ${1:}(${2:})
+    {
     ${3:return false;}
-  }
+    }
 snippet mb|
-    protected bool ${1:}(${2:}) {
+    protected bool ${1:}(${2:})
+    {
     ${3:return false;}
-  }
+    }
 snippet mb-
-    private bool ${1:}(${2:}) {
+    private bool ${1:}(${2:})
+    {
     ${3:return false;}
-  }
+    }
 # members - string
 snippet ms
-    ${1:public} string ${2:}(${3:}) {
+    ${1:public} string ${2:}(${3:})
+    {
     ${4:return "";}
-  }
+    }
 snippet ms+
-    public string ${1:}(${2:}) {
+    public string ${1:}(${2:})
+    {
     ${3:return "";}
-  }
+    }
 snippet ms&
-    internal string ${1:}(${2:}) {
+    internal string ${1:}(${2:})
+    {
     ${3:return "";}
-  }
+    }
 snippet ms|
-    protected string ${1:}(${2:}) {
+    protected string ${1:}(${2:})
+    {
     ${3:return "";}
-  }
+    }
 snippet ms-
-    private string ${1:}(${2:}) {
+    private string ${1:}(${2:})
+    {
     ${3:return "";}
-  }
+    }
 # structure
 snippet struct
-    public struct ${1:`vim_snippets#Filename()`} {
+    public struct ${1:`vim_snippets#Filename()`}
+    {
     ${0}
-  }
+    }
+
+# using
+snippet using 
+    using (${1:})
+    {
+    }
+
 # enumeration
 snippet enum
-    public enum $n 0;}
-  }
-snippet mi|
-    protected int ${1:}(${2:}) {
-    ${3:return 0;}
-  }
-sni# 
-    ${3:return 0;}
-  }
-snippet mi-
-    private int ${ryippet mb
-  ${1:public} bool ${2:}(${3:}) {
-    ${4:return false;}
-  }
-snippet mb+
-    public bool ${1:}($ cnippet mb+
-  public bool ${1:}(${2:}) {
-    ${3:return false;}
-  }
-sn>$return false;}
-  }
-snippet mb|
-    protected bool ${1:}(${2:}) {
-    ${3:return false;}
-  }
-snippet mb-
-    private bool ${1:}(${2:}) {
-    ${3:return false;}
-  }
-# members - string
-snippet ms
-    ${1:public} string ${2:}(${3:}) {
-    ${4:return "";}
-  }
-snippet ms+
-    public string ${1:}(${2:}) {
-    ${3:return "";}
-  }
-snippet ms&
-    internal string ${1:}(${2:}) {
-    ${3:return "";}
-  }
-snippet ms|
-    protected string ${1:}(${2:}) {
-    ${3:return "";}
-  }
-snippet ms-
-    private string ${1:}(${2:}) {
-    ${3:return "";}
-  }
-# structure
-snippet struct
-    public struct ${1:`vim_snippets#Filename()`} {
+    public enum ${1}
+    {
     ${0}
-  }
-# enumeration
-snippet enum
-    public enum ${1} {
-    ${0}
-  }
+    }
 # preprocessor directives
 snippet #if
     #if
     ${0}
-  #endif
+    #endif
 # inline xml documentation
+snippet //
+    /// <summary>${0}</summary>
 snippet ///
     /// <summary>
-  /// ${0}
-  /// </summary>
+    /// ${0}
+    /// </summary>
 snippet <p
-    <param name="${1}">${2:$1}</param>
+    <param name="${0}">${2:$1}</param>
 snippet <ex
-    <exception cref="${1:System.Exception}">${2}</exception>
+    <exception cref="${0:System.Exception}">${1}</exception>
 snippet <r
-    <returns>${1}</returns>{
+    <returns>${0}</returns>
 snippet <s
-    <see cref="${1}"/>
+    <see cref="${0}"/>
 snippet <rem
-    <remarks>${1}</remarks>
+    <remarks>${0}</remarks>
 snippet <c
-    <code>${1}</code>
-
+    <code>${0}</code>
