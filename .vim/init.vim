@@ -1,0 +1,1 @@
+/Users/katagiri/.vimrc

@@ -38,6 +38,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle "Shougo/unite-outline"
+NeoBundle "Konfekt/FastFold"
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'vim-ruby/vim-ruby'
@@ -104,6 +105,7 @@ filetype indent plugin on
 syntax on
 let g:molokai_original=1
 colorscheme molokai
+highlight Normal ctermbg=none
 
 " -----------------------------------------------------------------------------
 "  基本設定
@@ -149,26 +151,30 @@ set incsearch
 " 検索ワードをハイライトする
 set hlsearch
 
+" カーソルラインをハイライトする
+" set cursorline
+
 " バックスペースでインデント削除
 set backspace=indent,eol,start
 
 " 日本語のズレを無くす
 set ambiwidth=double
 
-"タブ、空白、改行の可視化
+" タブ、空白、改行の可視化
 set list
 set listchars=tab:>\ ,trail:_
 
-"折り畳み設定
+" 折り畳み設定
 set foldmethod=syntax
 
 " バッファを開いた時に、カレントディレクトリを自動で移動
 " autocmd BufEnter * execute ":lcd " . expand("%:p:h")
 
-" バッファを保存した時にgtags -qを走らせる
 " 環境に合わせてsourceするようにする(リポジトリには含めない)
-" autocmd BufWritePost /var/www/1/**/* silent execute '!cd /var/www/1; gtags -q /mnt/ramdisk >& /dev/null &'
 source ~/.vimrc.local
+
+" Escape を jj に設定
+inoremap <silent> jj <ESC>
 
 " -----------------------------------------------------------------------------
 "  バッファ操作
@@ -233,21 +239,16 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
+let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-
-" Enable php completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"     let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-" inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
+inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
 
 " -----------------------------------------------------------------------------
 "  neosnippet
@@ -316,7 +317,7 @@ noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
-noremap <C-U><C-A> :Unite file_rec:.<CR>
+noremap <C-U><C-A> :Unite file_rec/async:.<CR>
 " アウトライン
 noremap <C-U><C-O> :Unite -vertical -no-quit outline<CR>
 " ESCキーを2回押すと終了する
@@ -378,7 +379,7 @@ let g:vdebug_options = {
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/Users/katagiri/Workspace/Retty/retty' : '/home/d-partner39/retty',
+\        '/Users/katagiri/Workspace/MagiGames/CasperAPI/casper' : '/home/katagiri/services/casper',
 \        }
 \}
 
