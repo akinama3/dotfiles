@@ -63,6 +63,7 @@ NeoBundle 'akinama/phpcomplete.vim'
 NeoBundle 'blueyed/smarty.vim'
 NeoBundle 'akinama/phpfolding.vim'
 NeoBundle 'akinama/unite-ethna'
+NeoBundle 'akinama/unite-cake'
 NeoBundle 'akinama/SmartyJump'
 NeoBundle 'hewes/unite-gtags'
 NeoBundle 'mattn/webapi-vim'
@@ -511,7 +512,25 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 "  Omni Sharp
 " -----------------------------------------------------------------------------
-noremap <silent> <space>cf :OmniSharpCodeFormat<CR>
-noremap <silent> <space>cs :OmniSharpFindSyntaxErrors<CR>
-noremap <silent> <space>cd :OmniSharpGotoDefinition<CR>
-noremap <silent> <space>cr :OmniSharpFindUsages<CR>
+noremap <silent> <space>csf :OmniSharpCodeFormat<CR>
+noremap <silent> <space>css :OmniSharpFindSyntaxErrors<CR>
+noremap <silent> <space>csd :OmniSharpGotoDefinition<CR>
+noremap <silent> <space>csr :OmniSharpFindUsages<CR>
+
+" -----------------------------------------------------------------------------
+"  Unite cake
+" -----------------------------------------------------------------------------
+nnoremap <silent> <space>ccont :Unite cake/controller<CR>
+nnoremap <silent> <space>cmo   :Unite cake/model<CR>
+nnoremap <silent> <space>cl    :Unite cake/logic<CR>
+nnoremap <silent> <space>ct    :Unite cake/template<CR>
+nnoremap <silent> <space>cv    :Unite cake/view<CR>
+nnoremap <silent> <space>cs    :Unite cake/shell<CR>
+nnoremap <silent> <space>cu    :Unite cake/utility<CR>
+nnoremap <silent> <space>cp    :Unite cake/plugins<CR>
+nnoremap <silent> <space>cd    :Unite cake/database<CR>
+nnoremap <silent> <space>ccons :Unite cake/constant<CR>
+nnoremap <silent> <space>cconf :Unite cake/config<CR>
+nnoremap <silent> <space>cma   :Unite cake/master<CR>
+nnoremap <silent> <space>cj    :Unite cake/js<CR>
+
