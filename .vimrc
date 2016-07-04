@@ -380,7 +380,6 @@ let g:vdebug_options = {
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/home/jkatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
 \        '/home/jkatagiri/www/cinderella_server' : '/home/katagiri/services/cinderella_server',
 \        }
 \}
