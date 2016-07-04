@@ -46,7 +46,7 @@ gtags:\
 	:tc=common:\
 	:tc=builtin-parser:
 builtin-parser:\
-    :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml,cs\:.cs.h.cppproj.csproj.aspx.asax.config.cscfg.csdef:
+    :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml.ctp,cs\:.cs.h.cppproj.csproj.aspx.asax.config.cscfg.csdef:
 #
 # skeleton for user's custom parser.
 #
@@ -249,7 +249,7 @@ pygments-parser|Pygments plug-in parser:\
 	:langmap=Ooc\:.ooc:\
 	:langmap=Opa\:.opa:\
 	:langmap=OpenEdge\:.p.cls:\
-	:langmap=PHP\:.php.php3.phtml:\
+	:langmap=PHP\:.php.php3.phtml.ctp:\
 	:langmap=Pascal\:.pas:\
 	:langmap=Perl\:.pl.pm:\
 	:langmap=PostScript\:.ps.eps:\
