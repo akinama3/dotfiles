@@ -99,12 +99,13 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User specific environment and startup programs
-PATH=$HOME/.bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/android-sdk-macosx/platform-tools:/Applications/android-sdk-macosx/tools
+PATH=$HOME/.bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/android-sdk-macosx/platform-tools:/Applications/android-sdk-macosx/tools:/usr/local/opt/go/libexec/bin
 export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
 PATH=${JAVA_HOME}/bin:${PATH}
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/opt/mysql/server-5.6/lib
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 SCALA_HOME=/usr/local/scala
+export GOPATH=$HOME/.go
 
 # OSのタイプによって切り分け
 case "$OSTYPE" in

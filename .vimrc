@@ -23,7 +23,6 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build' : {
@@ -94,6 +93,8 @@ NeoBundleLazy 'OmniSharp/omnisharp-vim', {
             \ }
 NeoBundle 'OrangeT/vim-csharp'
 NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'fatih/vim-go.git'
+NeoBundle 'jeroenbourgois/vim-actionscript'
 
 call neobundle#end()
 
@@ -153,7 +154,7 @@ set incsearch
 set hlsearch
 
 " カーソルラインをハイライトする
-" set cursorline
+set cursorline
 
 " バックスペースでインデント削除
 set backspace=indent,eol,start
@@ -380,7 +381,9 @@ let g:vdebug_options = {
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/home/jkatagiri/www/cinderella_server' : '/home/katagiri/services/cinderella_server',
+\        '/home/mixikatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
+\        '/home/jkatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
+\        '/home/jkatagiri/www/witch_server' : '/Users/katagiri/Workspace/GeNERACE/witch_server',
 \        }
 \}
 

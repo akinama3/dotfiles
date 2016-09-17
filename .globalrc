@@ -146,7 +146,7 @@ pygments-parser|Pygments plug-in parser:\
 	:tc=builtin-parser:\
 	:langmap=ABAP\:.sobap:\
 	:langmap=ANTLR\:.G.g:\
-	:langmap=ActionScript3\:.sos:\
+	:langmap=ActionScript3\:.sos.as:\
 	:langmap=Ada\:.sodb.sods.soda:\
 	:langmap=AppleScript\:.sopplescript:\
 	:langmap=AspectJ\:.soj:\
