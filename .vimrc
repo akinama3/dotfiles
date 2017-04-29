@@ -36,6 +36,7 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neossh.vim'
 NeoBundle "Shougo/unite-outline"
 NeoBundle "Konfekt/FastFold"
 NeoBundle 'tpope/vim-fugitive'
@@ -177,6 +178,9 @@ source ~/.vimrc.local
 
 " Escape を jj に設定
 inoremap <silent> jj <ESC>
+
+" Quick Fixを下側に表示する
+set splitbelow
 
 " -----------------------------------------------------------------------------
 "  バッファ操作
@@ -381,9 +385,8 @@ let g:vdebug_options = {
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/home/mixikatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
-\        '/home/jkatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
-\        '/home/jkatagiri/www/witch_server' : '/Users/katagiri/Workspace/GeNERACE/witch_server',
+\        '/home/mixikatagiri/www/cinderella_server' : '/Users/katagiri/Documents/Workspace/GeNERACE/cinderella_server',
+\        '/home/generace/www/witch_server' : '/Users/katagiri/Documents/Workspace/GeNERACE/witch_server',
 \        }
 \}
 
@@ -484,8 +487,8 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 30
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <space>t :NERDTreeToggle<CR>
-nnoremap <silent> <space>f :NERDTreeFind<CR>
+nnoremap <silent> <space>tt :NERDTreeToggle<CR>
+nnoremap <silent> <space>tf :NERDTreeFind<CR>
 
 " -----------------------------------------------------------------------------
 "  Git
@@ -515,10 +518,27 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 "  Omni Sharp
 " -----------------------------------------------------------------------------
-noremap <silent> <space>csf :OmniSharpCodeFormat<CR>
-noremap <silent> <space>css :OmniSharpFindSyntaxErrors<CR>
-noremap <silent> <space>csd :OmniSharpGotoDefinition<CR>
-noremap <silent> <space>csr :OmniSharpFindUsages<CR>
+augroup omnisharp_commands
+    autocmd!
+
+    " ビルド実行する
+    autocmd FileType cs nnoremap <space>ob :wa!<cr>:OmniSharpBuildAsync<cr>
+
+    " 新しいファイルをプロジェクトに自動的に追加する
+    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+
+    " カーソルの移動が止まったら型情報を自動的に表示する
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+    " キーバインド
+    noremap <silent> <space>ff :OmniSharpCodeFormat<CR>
+    noremap <silent> <space>fe :OmniSharpFindSyntaxErrors<CR>
+    noremap <silent> <space>fd :OmniSharpGotoDefinition<CR>
+    noremap <silent> <space>fr :OmniSharpFindUsages<CR>
+    noremap <silent> <space>ft :OmniSharpFindType<CR>
+    noremap <silent> <space>fs :OmniSharpFindSymbol<CR>
+    noremap <silent> <space>r :OmniSharpReloadSolution<CR>
+augroup END
 
 " -----------------------------------------------------------------------------
 "  Unite cake

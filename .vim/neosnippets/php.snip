@@ -12,3 +12,20 @@ snippet af->setAppNE
 
 snippet af->get
     $this->_${1:#:variable} = $this->af->get('${2:#:string}');
+
+snippet getConstant
+    Application::getConstant('${1:Constant}', '${2:#:string}', '${3:#:string}')
+
+snippet getInstance
+    Application::getInstance('${1:Logic}', '${2:#:string}', '${3:#:string}')
+
+snippet createModelValueByName
+    Application::createModelValueByName('${1:#:string}', '${2:#:string}')
+
+snippet createModelValue
+    Application::createModelValue('${1:#:string}', '${2:#:string}')
+
+snippet callStatic
+    Application::callStatic('${1:#:string}', '${2:#:string}', '${3:#:string}')
+
+
