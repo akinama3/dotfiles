@@ -1,6 +1,6 @@
-set guifont=Essential\ PragmataPro\ for\ Powerline:h14
-set guifontwide=Ricty\ for\ Powerline:h14
-set guifont=Essential\ PragmataPro\ for\ Powerline:h14
+set guifont=Essential\ PragmataPro\ for\ Powerline:h12
+set guifontwide=Ricty\ for\ Powerline:h12
+set guifont=Essential\ PragmataPro\ for\ Powerline:h12
 set lines=120
 set columns=430
 set guioptions-=T  " ツールバー隠す

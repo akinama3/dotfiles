@@ -95,7 +95,6 @@ NeoBundleLazy 'OmniSharp/omnisharp-vim', {
 NeoBundle 'OrangeT/vim-csharp'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'fatih/vim-go.git'
-NeoBundle 'jeroenbourgois/vim-actionscript'
 
 call neobundle#end()
 
@@ -155,7 +154,7 @@ set incsearch
 set hlsearch
 
 " カーソルラインをハイライトする
-set cursorline
+" set cursorline
 
 " バックスペースでインデント削除
 set backspace=indent,eol,start
@@ -291,7 +290,7 @@ let g:airline_right_alt_sep = "⮃"
 let g:airline#extension#branch#symbol = '⭠'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'dark'
-let g:airline_section_c = '%t'
+let g:airline_section_c = '%F'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '⮁'
@@ -302,8 +301,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " -----------------------------------------------------------------------------
 " インサートモードで開始する
 let g:unite_enable_start_insert=1
-let g:unite_source_rec_min_cache_files=100
-let g:unite_source_rec_max_cache_files=100000
+let g:unite_source_rec_min_cache_files=10
+let g:unite_source_rec_max_cache_files=1000
 let g:unite_source_file_mru_limit=10000
 let g:unite_enable_ignore_case=1
 " Unite Grep the silver searcher
@@ -324,22 +323,28 @@ noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 再帰的にプロジェクトディレクトリを更新
 noremap <C-U><C-A> :Unite file_rec/async:.<CR>
+" 再帰的にプロジェクトディレクトリを更新
+noremap <C-U><C-G> :Unite file_rec/git:.<CR>
 " アウトライン
 noremap <C-U><C-O> :Unite -vertical -no-quit outline<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-call unite#custom_source(
-            \ 'file_rec',
+call unite#custom#source(
+            \ 'file_rec/async',
             \ 'ignore_pattern',
             \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
 
-call unite#custom_source(
+call unite#custom#source(
+            \ 'file_rec/git',
+            \ 'ignore_pattern',
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+
+call unite#custom#source(
             \ 'file',
             \ 'ignore_pattern',
             \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
-
 
 " -----------------------------------------------------------------------------
 "  vim-ref
