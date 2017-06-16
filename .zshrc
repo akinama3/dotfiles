@@ -147,3 +147,5 @@ export EDITOR=vim
 
 # For Tmux PowerLine
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+export PATH="$HOME/.exenv/bin:$PATH"
+eval "$(exenv init -)"
