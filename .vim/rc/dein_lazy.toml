@@ -32,10 +32,12 @@ on_ft = ['ruby']
 
 [[plugins]]
 repo = 'OmniSharp/omnisharp-vim'
+if = 'has("nvim")'
 on_ft = ['cs']
 
 [[plugins]]
 repo = 'autozimu/deoplete-omnisharp'
+if = 'has("nvim")'
 on_ft = ['cs']
 
 [[plugins]]
