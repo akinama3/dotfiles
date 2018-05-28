@@ -20,22 +20,22 @@ You can use the following script to install various setting files.
 
 ### 3. Install Vim Plugins for Vim
 
-Requirement Vim version is below.
+Conformation NeoVim version is below.
 
 ```
-vim ~> 7.3 (~> patch 885)
+neovim ~> 0.2.2
 ```
 
-You should install vim plugings via NeoBundle. You try to install as following sequence.
+You should install vim plugings via dein.vim. You try to install as following sequence.
 
-* Execute vim command
+* Execute nvim command and automatically install with dein.vim
 ```
-% vim
+% nvim
 ```
 
-* Install vim plugins by "NeoBundle" Command(You must be in normal mode)
+* Manual install plugins by "dein.vim"
 ```
-:NeoBundleInstall
+:call dein#install()
 ```
 
 If you wait a minute, the plugins will be installed.

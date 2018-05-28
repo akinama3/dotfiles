@@ -1,1 +1,1 @@
-/Users/katagiri/.vimrc
+../.vimrc
