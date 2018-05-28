@@ -2,6 +2,13 @@
 
 DOTFILES_DIR=".dotfiles"
 
+# dein
+if [ ! -e ~/.cache/dein ]; then
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+  sh ./installer.sh ~/.cache/dein
+  rm ./installer.sh
+fi
+
 # zshrc
 if [ -e ~/.zshrc ]; then
   rm -f ~/.zshrc

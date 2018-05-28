@@ -18,9 +18,9 @@ You can use the following script to install various setting files.
 % sh setting.sh
 ```
 
-### 3. Install Vim Plugins for Vim
+### 3. Install Plugins for NeoVim
 
-Conformation NeoVim version is below.
+The conformed NeoVim version is below.
 
 ```
 neovim ~> 0.2.2
