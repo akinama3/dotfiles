@@ -28,7 +28,11 @@ snippet s2f
 snippet load
     (${2:GameObject}) Resources.Load("${1:path}")
 snippet wait
-    yield return new WaitForSeconds(${1:time})
+    yield return new WaitForSeconds(${1:time});
+snippet waituntil
+    yield return new WaitUntil(() => ${1:time});
+snippet waitwhile
+    yield return new WaitWhile(() => ${1:time});
 snippet sm
     SendMessage("${1:message}", ${2:null}, ${3:SendMessageOptions.DontRequireReceiver})
 snippet forl

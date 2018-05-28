@@ -5,98 +5,40 @@
 autocmd!
 
 " vi 互換モードをオフ
-set nocompatible
-
-" -----------------------------------------------------------------------------
-"  NeoBundle
-" -----------------------------------------------------------------------------
-" vundle 設定のためオフにする
-filetype plugin indent off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/NeoBundle/
+if &compatible
+  set nocompatible
 endif
 
 " -----------------------------------------------------------------------------
-" NeoBundle plugins
+"  dein.vim
 " -----------------------------------------------------------------------------
-call neobundle#begin(expand('~/.vim/bundle/'))
+filetype plugin indent off
 
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \     'windows' : 'tools\\update-dll-mingw',
-            \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \    },
-            \ }
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neossh.vim'
-NeoBundle "Shougo/unite-outline"
-NeoBundle "Konfekt/FastFold"
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/molokai'
-NeoBundle 'vim-scripts/MultipleSearch'
-NeoBundle 'surround.vim'
-NeoBundle 'joonty/vdebug'
-NeoBundle 'rgarver/Kwbd.vim'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'basyura/unite-rails'
-NeoBundle 'ujihisa/unite-rake'
-NeoBundle 'ujihisa/unite-locate'
-NeoBundle 'mikehaertl/pdv-standalone'
-NeoBundle 'akinama/vim-json'
-NeoBundle 'akinama/phpcomplete.vim'
-NeoBundle 'blueyed/smarty.vim'
-NeoBundle 'akinama/phpfolding.vim'
-NeoBundle 'akinama/unite-ethna'
-NeoBundle 'akinama/unite-cake'
-NeoBundle 'akinama/SmartyJump'
-NeoBundle 'hewes/unite-gtags'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'evanmiller/nginx-vim-syntax'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'gre/play2vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'tpope/vim-rake'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'jiangmiao/simple-javascript-indenter'
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'vim-scripts/jQuery'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'vim-scripts/BufOnly.vim'
-NeoBundle 'vim-scripts/android.vim'
-NeoBundle 'akinama/vim-ref-ri'
-NeoBundle 'vim-scripts/rails.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
-NeoBundleLazy 'OmniSharp/omnisharp-vim', {
-            \   'autoload': { 'filetypes': [ 'cs' ] },
-            \   'build': {
-            \     'windows' : 'msbuild server/OmniSharp.sln',
-            \     'mac': 'xbuild server/OmniSharp.sln',
-            \     'unix': 'xbuild server/OmniSharp.sln',
-            \   }
-            \ }
-NeoBundle 'OrangeT/vim-csharp'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'fatih/vim-go.git'
+" dein.vim ランタイムパス指定
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-call neobundle#end()
+" dein.vim 設定
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+
+  call dein#load_toml(expand('~/.vim/rc') . '/dein.toml',      {'lazy': 0})
+  call dein#load_toml(expand('~/.vim/rc') . '/dein_lazy.toml', {'lazy': 1})
+
+  if !has('nvim')
+    call dein#load_toml(expand('~/.vim/rc') . '/dein_not_nvim.toml', {'lazy': 0})
+  endif
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install(['vimproc.vim'])
+  call dein#install(['vimproc.vim'])
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " ファイルタイプの自動検出
 filetype indent plugin on
@@ -126,6 +68,7 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
+set fileformats=unix,dos,mac
 
 " 基本のインデント設定(各拡張子毎の設定は別途)
 set expandtab
@@ -186,78 +129,12 @@ set splitbelow
 " -----------------------------------------------------------------------------
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
-
-" -----------------------------------------------------------------------------
-"  neocomplete
-" -----------------------------------------------------------------------------
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Use Underbar Completion
-let g:neocomplete#enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" Use Vimproc
-let g:neocomplete#use_vimproc = 1
-" Lock Buffer Name Pattern
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" Enable Prefetch
-let g:neocomplete#enable_prefetch = 1
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist'
-      \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ?  neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
-let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-
-inoremap <expr><C-o> neocomplete#start_manual_complete('omni')
-
+ 
 " -----------------------------------------------------------------------------
 "  neosnippet
 " -----------------------------------------------------------------------------
+let g:neosnippet#enable_completed_snippet = 1
+
 " キーマップの設定
 imap <C-k>  <Plug>(neosnippet_expand_or_jump)
 smap <C-k>  <Plug>(neosnippet_expand_or_jump)
@@ -273,8 +150,38 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For snippet_complete marker.
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+ set conceallevel=2 concealcursor=i
 endif
+
+" -----------------------------------------------------------------------------
+" deoplete.nvim
+" -----------------------------------------------------------------------------
+set completeopt+=noinsert
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+
+" disable autocomplete by default
+let b:deoplete_disable_auto_complete=1 
+let g:deoplete_disable_auto_complete=1
+call deoplete#custom#buffer_option('auto_complete', v:false)
+
+if !exists('g:deoplete#sources#omni#input_patterns')
+  let g:deoplete#sources#omni#input_patterns = {}
+endif
+let g:deoplete#sources#omni#input_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
+let g:deoplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:deoplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"
+
+" set sources
+let g:deoplete#sources = {}
+let g:deoplete#sources.cpp = ['LanguageClient']
+let g:deoplete#sources.python = ['LanguageClient']
+let g:deoplete#sources.python3 = ['LanguageClient']
+let g:deoplete#sources.rust = ['LanguageClient']
+let g:deoplete#sources.c = ['LanguageClient']
+let g:deoplete#sources.vim = ['vim']
+
 
 " -----------------------------------------------------------------------------
 " vim-airline
@@ -295,6 +202,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '⮁'
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 0
 
 " -----------------------------------------------------------------------------
 "  unite.vim
@@ -334,17 +243,17 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 call unite#custom#source(
             \ 'file_rec/async',
             \ 'ignore_pattern',
-            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>')
 
 call unite#custom#source(
             \ 'file_rec/git',
             \ 'ignore_pattern',
-            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>')
 
 call unite#custom#source(
             \ 'file',
             \ 'ignore_pattern',
-            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>\|\<lib\>')
+            \ '\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|png\|jpg\|meta\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)\|\<vendor\>\|\<node_modules\>\|\<htdocs\>\|\<tmp\>')
 
 " -----------------------------------------------------------------------------
 "  vim-ref
@@ -355,9 +264,9 @@ nnoremap <silent> <space>refe :Unite ref/refe<CR>
 nnoremap <silent> <space>refr :Unite ref/ri<CR>
 
 " Ruby
-let g:ref_use_vimproc=1
-let g:ref_refe_version=2
-let g:ref_refe_encoding='utf-8'
+" let g:ref_use_vimproc=1
+" let g:ref_refe_version=2
+" let g:ref_refe_encoding='utf-8'
 
 " -----------------------------------------------------------------------------
 "  unite-gtags.vim
@@ -377,7 +286,9 @@ noremap <silent> <space>ul :Unite locate<CR>
 " -----------------------------------------------------------------------------
 "  Clipboard
 " -----------------------------------------------------------------------------
-set clipboard=unnamed,autoselect
+if !has('nvim')
+  set clipboard=unnamed,autoselect
+end
 
 " -----------------------------------------------------------------------------
 "  vdebug
@@ -390,8 +301,8 @@ let g:vdebug_options = {
 \    "path_maps" : {
 \        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/home/mixikatagiri/www/cinderella_server' : '/Users/katagiri/Documents/Workspace/GeNERACE/cinderella_server',
-\        '/home/generace/www/witch_server' : '/Users/katagiri/Documents/Workspace/GeNERACE/witch_server',
+\        '/home/jkatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
+\        '/home/generace/www/witch_server' : '/Users/katagiri/Workspace/GeNERACE/witch_server',
 \        }
 \}
 
@@ -399,31 +310,6 @@ let g:vdebug_options = {
 "  uniteの色
 " -----------------------------------------------------------------------------
 highlight PmenuSel ctermbg=0 ctermfg=208
-
-" -----------------------------------------------------------------------------
-"  php-doc
-" -----------------------------------------------------------------------------
-autocmd FileType php inoremap <C-@> <ESC>:call PhpDocSingle()<CR>i
-autocmd FileType php nnoremap <C-@> :call PhpDocSingle()<CR>
-autocmd FileType php vnoremap <C-@> :call PhpDocRange()<CR>
-let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Package = "Eden"
-let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Copyright = ""
-let g:pdv_cfg_Author = "Jun Katagiri"
-let g:pdv_cfg_License = ""
-
-" After phpDoc standard
-let g:pdv_cfg_CommentHead = "/**"
-let g:pdv_cfg_Comment1 = " * "
-let g:pdv_cfg_Commentn = " *"
-let g:pdv_cfg_CommentTail = " */"
-let g:pdv_cfg_CommentSingle = "// "
-
-" Attributes settings
-let g:pdv_cfg_Uses       = 0
-let g:pdv_cfg_php4always = 0
-let g:pdv_cfg_php4guess  = 0
 
 " -----------------------------------------------------------------------------
 "  MultipleSearch
@@ -444,30 +330,6 @@ nnoremap <silent> <space>rd :Unite rails/db<CR>
 nnoremap <silent> <space>rj :Unite rails/javascript<CR>
 nnoremap <silent> <space>rs :Unite rails/stylesheet<CR>
 nnoremap <silent> <space>rh :Unite rails/helper<CR>
-
-" -----------------------------------------------------------------------------
-"  Unite ethna
-" -----------------------------------------------------------------------------
-nnoremap <silent> <space>emo :Unite ethna/module<CR>
-nnoremap <silent> <space>ep  :Unite ethna/processor<CR>
-nnoremap <silent> <space>eca :Unite ethna/cascade<CR>
-nnoremap <silent> <space>ed  :Unite ethna/dataformat<CR>
-nnoremap <silent> <space>eg  :Unite ethna/gateway<CR>
-nnoremap <silent> <space>ess :Unite ethna/shardselector<CR>
-nnoremap <silent> <space>ea  :Unite ethna/action<CR>
-nnoremap <silent> <space>et  :Unite ethna/template<CR>
-nnoremap <silent> <space>eco :Unite ethna/config<CR>
-nnoremap <silent> <space>ema :Unite ethna/master<CR>
-nnoremap <silent> <space>eh  :Unite ethna/hook<CR>
-nnoremap <silent> <space>ecl :Unite ethna/cli<CR>
-nnoremap <silent> <space>esr :Unite ethna/src<CR>
-
-" -----------------------------------------------------------------------------
-"  PHP Folding
-" -----------------------------------------------------------------------------
-augroup vimrc
-    autocmd FileType phpunit EnableFastPHPFolds
-augroup END
 
 " -----------------------------------------------------------------------------
 "  Syntastic
@@ -523,6 +385,8 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 "  Omni Sharp
 " -----------------------------------------------------------------------------
+let g:OmniSharp_server_path = '/usr/local/Omnisharp/omnisharp/OmniSharp.exe'
+let g:OmniSharp_server_use_mono = 1
 augroup omnisharp_commands
     autocmd!
 
@@ -546,19 +410,6 @@ augroup omnisharp_commands
 augroup END
 
 " -----------------------------------------------------------------------------
-"  Unite cake
+"  Git Gutter
 " -----------------------------------------------------------------------------
-nnoremap <silent> <space>ccont :Unite cake/controller<CR>
-nnoremap <silent> <space>cmo   :Unite cake/model<CR>
-nnoremap <silent> <space>cl    :Unite cake/logic<CR>
-nnoremap <silent> <space>ct    :Unite cake/template<CR>
-nnoremap <silent> <space>cv    :Unite cake/view<CR>
-nnoremap <silent> <space>cs    :Unite cake/shell<CR>
-nnoremap <silent> <space>cu    :Unite cake/utility<CR>
-nnoremap <silent> <space>cp    :Unite cake/plugins<CR>
-nnoremap <silent> <space>cd    :Unite cake/database<CR>
-nnoremap <silent> <space>ccons :Unite cake/constant<CR>
-nnoremap <silent> <space>cconf :Unite cake/config<CR>
-nnoremap <silent> <space>cma   :Unite cake/master<CR>
-nnoremap <silent> <space>cj    :Unite cake/js<CR>
-
+nnoremap <silent> vgg :GitGutterAll<CR>

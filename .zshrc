@@ -99,7 +99,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User specific environment and startup programs
-PATH=$HOME/bin:$HOME/.bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/android-sdk-macosx/platform-tools:/Applications/android-sdk-macosx/tools:/usr/local/opt/go/libexec/bin:/Applications/MacVim.app/Contents/bin
+PATH=$HOME/bin:$HOME/.bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/Omnisharp/bin:/Applications/android-sdk-macosx/platform-tools:/Applications/android-sdk-macosx/tools:/usr/local/opt/go/libexec/bin:/Applications/neovim-dot-app/bin
 export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
 PATH=${JAVA_HOME}/bin:${PATH}
 LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/opt/mysql/server-5.6/lib
@@ -131,8 +131,9 @@ export PKG_CONFIG_PATH
 export PATH
 export SCALA_HOME
 
-alias vi=vim
 alias r=rails
+alias vi=nvim
+alias vim=nvim
 
 # XDEBUG
 export XDEBUG_CONFIG="idekey=DBGP"
@@ -143,7 +144,10 @@ eval "$(rbenv init -)"
 export GTAGSLABEL=exuberant-ctags
 
 # Default Editor
-export EDITOR=vim
+export EDITOR=nvim
+
+# NeoVim
+export XDG_CONFIG_HOME=~/.config
 
 # For Tmux PowerLine
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

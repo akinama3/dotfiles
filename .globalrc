@@ -94,6 +94,7 @@ exuberant-ctags|plugin-example|setting to use Exuberant Ctags plug-in parser:\
 	:langmap=SQL\:.sql:\
 	:langmap=Tcl\:.tcl.tk.wish.itcl:\
 	:langmap=Tex\:.tex:\
+	:langmap=Elixir\:.ex.exs:\
 	:langmap=Vera\:.vr.vri.vrh:\
 	:langmap=Verilog\:.v:\
 	:langmap=VHDL\:.vhdl.vhd:\
