@@ -299,10 +299,7 @@ let g:vdebug_options = {
 \    "continuous_mode"  : 1,
 \    'server': '0.0.0.0',
 \    "path_maps" : {
-\        '/vagrant/source' : '/Users/katagiri/Vagrant/hakoniwa-tw/source',
 \        '/vagrant/docroot' : '/Users/katagiri/Vagrant/trusty64/docroot',
-\        '/home/jkatagiri/www/cinderella_server' : '/Users/katagiri/Workspace/GeNERACE/cinderella_server',
-\        '/home/generace/www/witch_server' : '/Users/katagiri/Workspace/GeNERACE/witch_server',
 \        }
 \}
 
@@ -385,6 +382,8 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 "  Omni Sharp
 " -----------------------------------------------------------------------------
+" https://github.com/OmniSharp/omnisharp-roslyn/release
+" omnisharp.http-osx.tar.gz をOmniSharp_server_path をいい感じに指定:
 let g:OmniSharp_server_path = '/usr/local/Omnisharp/omnisharp/OmniSharp.exe'
 let g:OmniSharp_server_use_mono = 1
 augroup omnisharp_commands
