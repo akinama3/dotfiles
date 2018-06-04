@@ -385,6 +385,7 @@ nnoremap <silent> <space>bo :Bo<CR>
 " -----------------------------------------------------------------------------
 " https://github.com/OmniSharp/omnisharp-roslyn/release
 " omnisharp.http-osx.tar.gz をOmniSharp_server_path をいい感じに指定:
+let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_server_path = '/usr/local/Omnisharp/omnisharp/OmniSharp.exe'
 let g:OmniSharp_server_use_mono = 1
 augroup omnisharp_commands
