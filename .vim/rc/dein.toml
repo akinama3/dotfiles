@@ -2,7 +2,8 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim' build = 'make'
+repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -74,4 +75,50 @@ repo = 'vim-scripts/BufOnly.vim'
 [[plugins]]
 repo = 'tpope/vim-dispatch'
 
+[[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
+on_ft = ['cs']
 
+[[plugins]]
+repo = 'autozimu/deoplete-omnisharp'
+
+[[plugins]]
+repo = 'Shougo/deoplete-rct'
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+on_ft = ['ruby']
+
+[[plugins]]
+repo = 'osyo-manga/vim-monster'
+on_i = 1
+hook_add = '''
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources#omni#input_patterns = {
+  \ "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+  \}
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_i = 1
+on_ft = ['ruby']
+
+[[plugins]]
+repo = 'joonty/vdebug'
+on_i = 1
+on_ft = ['php']
+
+[[plugins]]
+repo = 'basyura/unite-rails'
+
+[[plugins]]
+repo = 'thoughtbot/vim-rspec'
+on_ft = ['ruby']
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_ft = ['php']
+
+[[plugins]]
+repo = 'tikhomirov/vim-glsl'

@@ -157,6 +157,7 @@ endif
 " deoplete.nvim
 " -----------------------------------------------------------------------------
 set completeopt+=noinsert
+set completeopt-=preview
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
