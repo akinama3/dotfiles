@@ -1,0 +1,57 @@
+" 検索するときに大文字小文字を区別しない
+set ignorecase
+
+" 検索時に大文字を含んでいたら大/小を区別
+set smartcase
+
+" インクリメンタル検索 (検索ワードの最初の文字を入力した時点で検索が開始)
+set incsearch
+
+" 検索対象をハイライト
+set hlsearch
+
+" 対応する括弧やブレースを表示
+set showmatch matchtime=1
+
+" メッセージ表示欄を2行確保
+set cmdheight=2
+
+" ステータス行を常に表示
+set laststatus=2
+
+" ウィンドウの右下にまだ実行していない入力中のコマンドを表示
+set showcmd
+
+" 省略されずに表示
+set display=lastline
+
+" 行末のスペースを可視化
+set listchars=tab:^\ ,trail:~
+
+" ヤンクでクリップボードにコピー
+set clipboard+=unnamed
+
+" 対応する括弧を強調表示
+set showmatch
+
+" 行をまたいで移動
+set whichwrap=b,s,h,l,<,>,[,],~
+
+" 圧倒的アクション呼び出し
+nnoremap gf :action GotoFile<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gu :action FindUsages<CR>
+nnoremap gr :action RenameElement<CR>
+nnoremap ga :action GotoAction<CR>
+nnoremap gb :action BuildSolutionAction<CR>
+nnoremap cc :action CommentByLineComment<CR>
+nnoremap =f :action ReformatCode<CR>
+nnoremap == :action AutoIndentLines<CR>
+nnoremap tt :action Terminal.OpenInTerminal<CR>
+nnoremap tb :action ToggleLineBreakpoint<CR>
+nnoremap fb :action Debugger.FocusOnBreakpoint<CR>
+nnoremap up :action PlayInUnityAction<CR>
+nnoremap us :action PauseInUnityAction<CR>
+nnoremap uu :action StepInUnityAction<CR>

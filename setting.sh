@@ -21,6 +21,12 @@ if [ -e ~/.vimrc ]; then
 fi
 ln -s ~/$DOTFILES_DIR/.vimrc ~/.vimrc
 
+# ideavimrc
+if [ -e ~/.ideavimrc ]; then
+  rm -f ~/.ideavimrc
+fi
+ln -s ~/$DOTFILES_DIR/.ideavimrc ~/.ideavimrc
+
 # gvimrc
 if [ -e ~/.gvimrc ]; then
   rm -f ~/.gvimrc

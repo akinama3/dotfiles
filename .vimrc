@@ -333,6 +333,7 @@ nnoremap <silent> <space>rh :Unite rails/helper<CR>
 "  Syntastic
 " -----------------------------------------------------------------------------
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_html_tidy_ignore_errors=['trimming empty', 'missing </a> before <div>', 'discarding unexpected </a>']
 let g:syntastic_html_validator_parser = 'html5'
 
@@ -387,6 +388,8 @@ nnoremap <silent> <space>bo :Bo<CR>
 " omnisharp.http-osx.tar.gz をOmniSharp_server_path をいい感じに指定:
 let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_server_path = '/usr/local/Omnisharp/omnisharp/OmniSharp.exe'
+let g:OmniSharp_selector_ui = 'unite'
+let g:Omnisharp_stop_server = 2
 let g:OmniSharp_server_use_mono = 1
 augroup omnisharp_commands
     autocmd!
@@ -407,7 +410,8 @@ augroup omnisharp_commands
     noremap <silent> <space>fr :OmniSharpFindUsages<CR>
     noremap <silent> <space>ft :OmniSharpFindType<CR>
     noremap <silent> <space>fs :OmniSharpFindSymbol<CR>
-    noremap <silent> <space>r :OmniSharpReloadSolution<CR>
+    noremap <silent> <space>fb :OmniSharpBuild<CR>
+    noremap <silent> <space>fo :OmniSharpReloadSolution<CR>
 augroup END
 
 " -----------------------------------------------------------------------------
