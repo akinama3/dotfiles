@@ -40,6 +40,7 @@ set whichwrap=b,s,h,l,<,>,[,],~
 " 圧倒的アクション呼び出し
 nnoremap gf :action GotoFile<CR>
 nnoremap gc :action GotoClass<CR>
+nnoremap gs :action GotoSymbol<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gu :action FindUsages<CR>
@@ -47,11 +48,10 @@ nnoremap gr :action RenameElement<CR>
 nnoremap ga :action GotoAction<CR>
 nnoremap gb :action BuildSolutionAction<CR>
 nnoremap cc :action CommentByLineComment<CR>
-nnoremap =f :action ReformatCode<CR>
-nnoremap == :action AutoIndentLines<CR>
+nnoremap == :action ReformatCode<CR>
 nnoremap tt :action Terminal.OpenInTerminal<CR>
 nnoremap tb :action ToggleLineBreakpoint<CR>
 nnoremap fb :action Debugger.FocusOnBreakpoint<CR>
-nnoremap up :action PlayInUnityAction<CR>
-nnoremap us :action PauseInUnityAction<CR>
-nnoremap uu :action StepInUnityAction<CR>
+nnoremap tp :action PlayInUnityAction<CR>
+nnoremap ts :action PauseInUnityAction<CR>
+nnoremap tu :action StepInUnityAction<CR>

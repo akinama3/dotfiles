@@ -76,13 +76,6 @@ repo = 'vim-scripts/BufOnly.vim'
 repo = 'tpope/vim-dispatch'
 
 [[plugins]]
-repo = 'OmniSharp/omnisharp-vim'
-on_ft = ['cs']
-
-[[plugins]]
-repo = 'autozimu/deoplete-omnisharp'
-
-[[plugins]]
 repo = 'Shougo/deoplete-rct'
 
 [[plugins]]
@@ -103,11 +96,6 @@ let g:deoplete#sources#omni#input_patterns = {
 repo = 'tpope/vim-endwise'
 on_i = 1
 on_ft = ['ruby']
-
-[[plugins]]
-repo = 'joonty/vdebug'
-on_i = 1
-on_ft = ['php']
 
 [[plugins]]
 repo = 'basyura/unite-rails'

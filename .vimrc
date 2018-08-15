@@ -110,7 +110,7 @@ set list
 set listchars=tab:>\ ,trail:_
 
 " 折り畳み設定
-set foldmethod=syntax
+" set foldmethod=syntax
 
 " バッファを開いた時に、カレントディレクトリを自動で移動
 " autocmd BufEnter * execute ":lcd " . expand("%:p:h")
@@ -169,7 +169,6 @@ call deoplete#custom#buffer_option('auto_complete', v:false)
 if !exists('g:deoplete#sources#omni#input_patterns')
   let g:deoplete#sources#omni#input_patterns = {}
 endif
-let g:deoplete#sources#omni#input_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
 let g:deoplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 let g:deoplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 "
@@ -380,39 +379,6 @@ nnoremap <silent> <space>kw :Kw<CR>
 "  Buffer Only
 " -----------------------------------------------------------------------------
 nnoremap <silent> <space>bo :Bo<CR>
-
-" -----------------------------------------------------------------------------
-"  Omni Sharp
-" -----------------------------------------------------------------------------
-" https://github.com/OmniSharp/omnisharp-roslyn/release
-" omnisharp.http-osx.tar.gz をOmniSharp_server_path をいい感じに指定:
-let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_server_path = '/usr/local/Omnisharp/omnisharp/OmniSharp.exe'
-let g:OmniSharp_selector_ui = 'unite'
-let g:Omnisharp_stop_server = 2
-let g:OmniSharp_server_use_mono = 1
-augroup omnisharp_commands
-    autocmd!
-
-    " ビルド実行する
-    autocmd FileType cs nnoremap <space>ob :wa!<cr>:OmniSharpBuildAsync<cr>
-
-    " 新しいファイルをプロジェクトに自動的に追加する
-    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-
-    " カーソルの移動が止まったら型情報を自動的に表示する
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-    " キーバインド
-    noremap <silent> <space>ff :OmniSharpCodeFormat<CR>
-    noremap <silent> <space>fe :OmniSharpFindSyntaxErrors<CR>
-    noremap <silent> <space>fd :OmniSharpGotoDefinition<CR>
-    noremap <silent> <space>fr :OmniSharpFindUsages<CR>
-    noremap <silent> <space>ft :OmniSharpFindType<CR>
-    noremap <silent> <space>fs :OmniSharpFindSymbol<CR>
-    noremap <silent> <space>fb :OmniSharpBuild<CR>
-    noremap <silent> <space>fo :OmniSharpReloadSolution<CR>
-augroup END
 
 " -----------------------------------------------------------------------------
 "  Git Gutter
