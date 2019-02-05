@@ -153,3 +153,9 @@ export XDG_CONFIG_HOME=~/.config
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 export PATH="$HOME/.exenv/bin:$PATH"
 eval "$(exenv init -)"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi

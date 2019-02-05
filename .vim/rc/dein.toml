@@ -110,3 +110,6 @@ on_ft = ['php']
 
 [[plugins]]
 repo = 'tikhomirov/vim-glsl'
+
+[[plugins]]
+repo = 'tomlion/vim-solidity'

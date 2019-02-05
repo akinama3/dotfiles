@@ -335,6 +335,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_html_tidy_ignore_errors=['trimming empty', 'missing </a> before <div>', 'discarding unexpected </a>']
 let g:syntastic_html_validator_parser = 'html5'
+let g:loaded_syntastic_solidity_solc_checker = 1
 
 " -----------------------------------------------------------------------------
 "  SmartyJump

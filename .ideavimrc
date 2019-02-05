@@ -47,6 +47,7 @@ nnoremap gu :action FindUsages<CR>
 nnoremap gr :action RenameElement<CR>
 nnoremap ga :action GotoAction<CR>
 nnoremap gb :action BuildSolutionAction<CR>
+nnoremap gp :action FindInPath<CR>
 nnoremap cc :action CommentByLineComment<CR>
 nnoremap == :action ReformatCode<CR>
 nnoremap tt :action Terminal.OpenInTerminal<CR>
