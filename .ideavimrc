@@ -40,7 +40,9 @@ set whichwrap=b,s,h,l,<,>,[,],~
 " 圧倒的アクション呼び出し
 nnoremap gf :action GotoFile<CR>
 nnoremap gc :action GotoClass<CR>
-nnoremap gs :action GotoSymbol<CR>
+" nnoremap gs :action GotoSymbol<CR>
+nnoremap gs :action ActivateStructureToolWindow<CR>
+nnoremap ,g :action GotoDeclaration<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gu :action FindUsages<CR>
@@ -56,3 +58,17 @@ nnoremap fb :action Debugger.FocusOnBreakpoint<CR>
 nnoremap tp :action PlayInUnityAction<CR>
 nnoremap ts :action PauseInUnityAction<CR>
 nnoremap tu :action StepInUnityAction<CR>
+nnoremap <M-Right> :action NextTab<CR>
+nnoremap <M-Left> :action PreviousTab<CR>
+nnoremap <M-1> :action GoToTab1<CR>
+nnoremap <M-2> :action GoToTab2<CR>
+nnoremap <M-3> :action GoToTab3<CR>
+nnoremap <M-4> :action GoToTab4<CR>
+nnoremap <M-9> :action GoToLastTab<CR>
+nnoremap <C-o> :action Back<CR>
+nnoremap go :action Github.Open.In.Browser<CR>
+nnoremap ,h :action CallHierarchy<CR>
+
+
+noremap gh ^
+noremap gl $
