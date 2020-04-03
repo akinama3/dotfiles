@@ -50,14 +50,17 @@ nnoremap gr :action RenameElement<CR>
 nnoremap ga :action GotoAction<CR>
 nnoremap gb :action BuildSolutionAction<CR>
 nnoremap gp :action FindInPath<CR>
+nnoremap ga :action Annotate<CR>
 nnoremap cc :action CommentByLineComment<CR>
 nnoremap == :action ReformatCode<CR>
+nnoremap =p :action ReformatWithPrettierAction<CR>
 nnoremap tt :action Terminal.OpenInTerminal<CR>
 nnoremap tb :action ToggleLineBreakpoint<CR>
 nnoremap fb :action Debugger.FocusOnBreakpoint<CR>
 nnoremap tp :action PlayInUnityAction<CR>
 nnoremap ts :action PauseInUnityAction<CR>
 nnoremap tu :action StepInUnityAction<CR>
+nnoremap up :action WebDeployment.ToggleAutoUpload<CR>
 nnoremap <M-Right> :action NextTab<CR>
 nnoremap <M-Left> :action PreviousTab<CR>
 nnoremap <M-1> :action GoToTab1<CR>
